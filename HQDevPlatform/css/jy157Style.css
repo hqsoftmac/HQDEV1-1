@@ -1,0 +1,16 @@
+﻿.fl{ float:left;}
+.fr{ float:right;}
+.cf{ clear:both;}
+
+
+#hotnotes{}
+.hotnotes_1{}
+.hotnotes_2{ height:30px; line-height:28px; width:120px; text-align:right;}
+.hotnotes_3 input{ width:155px;}
+
+#hotmess{ width:100%;border-collapse:collapse;}
+#hotmess th{border:1px solid gray; height:25px; line-height:25px; text-align:center; font-weight:bold; color:White; background-color:#006599;}
+#hotmess td{border:1px solid gray; height:20px; line-height:20px; text-align:center;}
+#hotmess a{ color:Green; cursor:pointer;}
+#hotmess a:hover{ color:red;}
+#hotmess tr:hover{ background-color:#ccc;}

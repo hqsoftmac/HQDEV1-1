@@ -1,0 +1,159 @@
+﻿
+body {
+    font-family:helvetica,tahoma,verdana,sans-serif;
+    padding:0;
+    font-size:12px;
+    margin:0;
+}
+
+a {
+	color: #555; 
+	text-decoration: none
+}
+
+a:hover {
+	color: #f50
+}
+
+#divnorth
+{
+    background-image:url(../images/header_bg.png);
+    background-position:100% -50px;
+    background-repeat:no-repeat;
+    background-color:#102C4A;
+}
+
+.headerNav
+{
+    background-image:url(../images/WebManagelogo.png);
+    background-position:left top;
+    background-repeat:no-repeat;
+    width:600px;
+    height:50px;  
+    float:left; 
+}
+
+.quickmenu
+{
+    float:right;
+    margin-right:20px;
+    color:#fff;
+    margin-top:15px;   
+}
+
+.quicklink
+{
+    color:#eee;   
+}
+
+.menutree
+{
+    list-style-type:none;
+    padding:2px;
+}
+
+.menutree li
+{
+    height:30px;
+    margin:0px; 
+    width:100%;
+    margin-bottom:2px;
+}
+
+.menutree li a
+{
+    text-decoration:none;
+    display:block;
+    width:116px;
+    height:20px;
+    border-bottom:1px solid #dedede;
+    border-top:1px solid #fff;
+    padding-top:10px;
+    padding-left:30px;
+    background-color:#efefef;
+    background-image:url(../images/funlight.png);
+    background-repeat:no-repeat;
+    background-position:4px 10px;
+    font-size:1.0em;
+    font-weight:600;
+}
+
+.menutree li a:hover
+{
+    background-color:#dcdcdc; 
+    color:#222;
+    background-image:url(../images/funlight1.png);
+}
+
+.btn-query
+{
+    margin-top:0;
+    padding-top:5px;
+    
+}
+
+
+.tbl-examresult
+{
+    width: 100%; 
+    margin: 0px auto 20px auto;
+    background-color:#999999;
+}
+
+.tbl-examresult th
+{
+    width: 50px; background-color: #99CCCC; height: 25px;border-width:0px;
+}
+
+.tbl-examresult td
+{
+    background-color: #ffffff; padding-left: 5px; text-align: center;font-size:1.1em;height:40px;cursor:pointer;
+}
+
+.tbl-examresult td input.txt
+{
+    width:200px;height:22px;   
+}
+
+.deptline
+{
+    width:100%;
+    border-top:1px dotted #000;
+    font-size:1.2em;
+    font-weight:600;
+    padding-top:15px;   
+    margin-top:15px;
+}
+
+
+#tbl-examresult
+{
+    width: 100%; 
+    margin: 0px auto 20px auto;
+    background-color:#999999;
+}
+
+#tbl-examresult th
+{
+    width: 50px; background-color: #99CCCC; height: 25px;border-width:0px;
+}
+
+#tbl-examresult td
+{
+    background-color: #ffffff; padding-left: 5px; text-align: center;font-size:1.1em;height:40px;cursor:pointer;
+}
+
+#tbl-examresult td input.txt
+{
+    width:200px;height:22px;   
+}
+
+#deptline
+{
+    width:100%;
+    border-top:1px dotted #000;
+    font-size:1.2em;
+    font-weight:600;
+    padding-top:15px;   
+    margin-top:15px;
+}

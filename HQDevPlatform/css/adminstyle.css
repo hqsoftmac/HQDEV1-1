@@ -1,0 +1,138 @@
+﻿a {
+	color: #555; 
+	text-decoration: none
+}
+
+a:hover {
+	color: #f50
+}
+
+a.download
+{
+	background-image:url(../images/button/download.png);
+	background-position:left center;
+	display:block;
+	height:30px;
+	width:30px;
+	float:right;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	padding-top:13px;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+a.update
+{
+	background-image:url(../images/button/update.png);
+	background-position:left center;
+	display:block;
+	height:30px;
+	width:30px;
+	float:right;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	padding-top:13px;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+a.query 
+{
+	background-image:url(../images/button/query.png);
+	background-position:left center;
+	display:block;
+	height:30px;
+	width:30px;
+	float:right;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	padding-top:13px;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+a.rnt
+{
+	background-image:url(../images/button/rnt.png);
+	background-position:left center;
+	display:block;
+	height:30px;
+	width:30px;
+	float:right;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	padding-top:13px;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+a.add
+{
+	background-image:url(../images/button/add.png);
+	background-position:left center;
+	display:block;
+	height:30px;
+	width:30px;
+	float:right;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	padding-top:13px;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+a.save
+{
+	background-image:url(../images/button/save.png);
+	background-position:left center;
+	display:block;
+	height:30px;
+	width:30px;
+	float:right;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	padding-top:13px;
+	margin-left:5px;
+	margin-right:10px;
+}
+
+div .formtable 
+{
+	font-size:10pt;
+}
+
+.tdlabel
+{
+	width:100px;
+	text-align:right;
+}
+.tdcontent
+{
+	text-align:left;
+}
+
+.tabtitlesel
+{
+    display:block;
+    float:left;
+    width:80px;
+    height:25px;   
+    background-color:#f0f0f0;
+    text-align:center;
+    padding-top:5px;
+    border:1px solid #dcdcdc;
+    border-bottom-style:none;
+    position:relative;
+    z-index:99;
+}
+
+.tabtitle
+{
+    display:block;
+    float:left;
+    width:80px;
+    height:25px;   
+    text-align:center;
+    padding-top:5px;
+}

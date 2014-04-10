@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6961CA94-D276-41EC-B0AC-5343EEEABC50}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HQPortal</RootNamespace>
+    <AssemblyName>HQPortal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HQLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HQLib\HQLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Biz\PortalArticleBiz.cs" />
+    <Compile Include="Biz\PortalArticleListBiz.cs" />
+    <Compile Include="Biz\PortalArticleListTreeBiz.cs" />
+    <Compile Include="Biz\PortalChildColumnContentBiz.cs" />
+    <Compile Include="Biz\PortalNavStyleBiz.cs" />
+    <Compile Include="Biz\PortalChildColumnBiz.cs" />
+    <Compile Include="Biz\PortalColumnBiz.cs" />
+    <Compile Include="Biz\PortalColumnNavBiz.cs" />
+    <Compile Include="Biz\PortalPositionBiz.cs" />
+    <Compile Include="Biz\PortalProductBiz.cs" />
+    <Compile Include="Biz\PortalProductListBiz.cs" />
+    <Compile Include="Biz\PortalProductListTreeBiz.cs" />
+    <Compile Include="DA\PortalArticleDA.cs" />
+    <Compile Include="DA\PortalArticleListDA.cs" />
+    <Compile Include="DA\PortalChildColumnContentDA.cs" />
+    <Compile Include="DA\PortalChildColumnDA.cs" />
+    <Compile Include="DA\PortalColumnDA.cs" />
+    <Compile Include="DA\PortalColumnNavDA.cs" />
+    <Compile Include="DA\PortalNavStyleDA.cs" />
+    <Compile Include="DA\PortalPositionDA.cs" />
+    <Compile Include="DA\PortalProductDA.cs" />
+    <Compile Include="DA\PortalProductListDA.cs" />
+    <Compile Include="ML\PortalArticle.cs" />
+    <Compile Include="ML\PortalArticleList.cs" />
+    <Compile Include="ML\PortalArticleListTree.cs" />
+    <Compile Include="ML\PortalChildColumn.cs" />
+    <Compile Include="ML\PortalChildColumnContent.cs" />
+    <Compile Include="ML\PortalColumn.cs" />
+    <Compile Include="ML\PortalColumnNav.cs" />
+    <Compile Include="ML\PortalNavStyle.cs" />
+    <Compile Include="ML\PortalPosition.cs" />
+    <Compile Include="ML\PortalProduct.cs" />
+    <Compile Include="ML\PortalProductList.cs" />
+    <Compile Include="ML\PortalProductListTree.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HQConst\HQConst.csproj">
+      <Project>{97921FD5-8B9E-40D7-BB8D-26CE125BACEC}</Project>
+      <Name>HQConst</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
