@@ -1833,11 +1833,6 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="addin\chrome.zip" />
-    <Content Include="addin\Firefox.zip" />
-    <Content Include="addin\IE8.zip" />
-    <Content Include="addin\install_flash_player.zip" />
-    <Content Include="addin\install_flash_player_ax.zip" />
     <None Include="addin\vssver2.scc" />
     <Content Include="Common\UploadHandler.ashx" />
     <None Include="Controls\Jquery EasyUI\js\vssver2.scc" />
