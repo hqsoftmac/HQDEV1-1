@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HQLib.Interface;
+using HQLib.Util;
 
 namespace HQOnlineExam.ML
 {
     [Serializable]
-    public class OEContentClass 
+    public class OEContentClass :IDatasource
     {
         public Int64 FContentClassId { get; set; }
 
@@ -23,7 +25,9 @@ namespace HQOnlineExam.ML
 
         }
 
-
-
+        public string ToJson()
+        {
+            return Utils.ConvertToJson(this);
+        }
     }
 }
