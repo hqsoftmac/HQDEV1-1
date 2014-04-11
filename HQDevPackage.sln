@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HQCommon", "HQCommon\HQComm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HQPartyManage", "HQPartyManage\HQPartyManage.csproj", "{4B2D8DBF-C266-4A6B-93E9-2B52A67EB058}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HQOnlineExam", "HQOnlineExam\HQOnlineExam.csproj", "{BA5D1DF9-9B99-41C0-A602-CFB2340A65D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{4B2D8DBF-C266-4A6B-93E9-2B52A67EB058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B2D8DBF-C266-4A6B-93E9-2B52A67EB058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B2D8DBF-C266-4A6B-93E9-2B52A67EB058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5D1DF9-9B99-41C0-A602-CFB2340A65D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5D1DF9-9B99-41C0-A602-CFB2340A65D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5D1DF9-9B99-41C0-A602-CFB2340A65D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5D1DF9-9B99-41C0-A602-CFB2340A65D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
