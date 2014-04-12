@@ -16,7 +16,7 @@ namespace HQOnlineExam.ML
 
         public string FQuestionTitle { get; set; }
 
-        public string FQuestionTitle { get; set; }
+        public string FQuestionType { get; set; }
 
         public string FQuestionDifficulty { get; set; }
 
@@ -28,7 +28,7 @@ namespace HQOnlineExam.ML
 
         public string FQuestionStatus { get; set; }
 
-        public DateTime FQuestionStatus { get; set; }
+        public DateTime FQuestionDateTime { get; set; }
 
         public Int64 AUserId { get; set; }
 

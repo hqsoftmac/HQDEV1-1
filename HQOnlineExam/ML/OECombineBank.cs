@@ -10,7 +10,7 @@ namespace HQOnlineExam.ML
   [Serializable]
   public class OECombineBank:IDatasource
   {
-      public Int64 OECombineBank { get; set; }
+      public Int64 FPaperId { get; set; }
 
       public Int64 FQBankId { get; set; }
 
