@@ -1518,6 +1518,7 @@
     </Compile>
     <Compile Include="default2.aspx.cs">
       <DependentUpon>default2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="default2.aspx.designer.cs">
       <DependentUpon>default2.aspx</DependentUpon>

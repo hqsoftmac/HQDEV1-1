@@ -32,9 +32,15 @@
 
 
 <div class="container" style="padding-top:45px;margin-bottom:10px;padding-bottom:0px;">
-          <div class="col-lg-12">
+          <div class="col-lg-6">
             <h1>在线考试系统</h1>
-          </div>    
+          </div> 
+          <div class="col-lg-3 pull-right" style="margin-top:30px;">
+               <p>
+               <button type="button" class="btn-sm btn-info" style="width:80px;margin-right:5px;">注  册</button>
+               <button type="button" class="btn-sm btn-warning" style="width:80px;">登  录</button>
+               </p>
+          </div>   
 </div>
 
 <!-- banner -->
