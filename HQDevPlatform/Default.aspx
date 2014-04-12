@@ -1,442 +1,225 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-<%@ Register src="template/style01/header.ascx" tagname="header" tagprefix="uc1" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
-    <title><%=gssitename %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content=<%=gssitedesc %> />
-    <meta name="keywords" content=<%=gssitekey %> />
-    <meta name="author" content="»ªÇ¿Í¨ÓÃÈí¼þÓÐÏÞ¹«Ë¾ HuaQiang General SoftWare" />
-    <!-- CSS -->
-    <style type="text/css" media="all">@import url("<%=gssitestyle %>" );</style>
-    
-    <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
-    <!-- END CSS -->
+ï»¿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default2.aspx.cs" Inherits="HQDevPlatform.default2" %>
 
-    <!-- JAVASCRIPT -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>        window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
-    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/scrolltopcontrol.js"></script>
-    <script type="text/javascript" src="js/superfish.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
-    <script type="text/javascript" src="js/jquery.modernizr.min.js"></script>
-    <!-- END JAVASCRIPT -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="åŽå¼ºé€šç”¨è½¯ä»¶æœ‰é™å…¬å¸ HuaQiang General SoftWare" />
+    <link rel="stylesheet" href="./css/style02/bootstrap.css" media="screen" />
+    <link href="css/style02/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./css/style02/banner.css" />
+    <script type="text/javascript" src="./css/style02/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./css/style02/script.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <uc1:header ID="header1" runat="server" />
-    <div class="slider"><!-- SLIDER -->    
-      <link rel="stylesheet" href="layerslider/css/layerslider.css" type="text/css" />
-      <div id="layerslider">
-			<div class="ls-layer" rel="slidedelay: 3000;">
-			    <img class="ls-bg" src="images/slider/browsers.png" alt="layer" />
-                <div class="ls-s3" style="padding: 0px; width: 440px; left: 580px; top: 80px;color: white; text-shadow: none; font-size: 30px; font-weight: bold;">
-		            »ªÇ¿Í¨ÓÃÈí¼þÓÐÏÞ¹«Ë¾
-			    </div>
-                <p id="P1" class="ls-s3" style="top:110px;font-size:10pt;left: 580px;color:#fff;">
-                    Èí¼þÆóÒµ&nbsp;&nbsp;ÈÏ¶¨±àºÅ:ËÕR-2012-F0009<br />
-				</p>
-                <div class="ls-s3" style="padding: 0px; width: 440px; left: 580px; top: 150px;color: white; text-shadow: none; font-size: 25px; font-weight: bold;">
-		            10ÄêµÄ³É¹¦¾­Ñé»ýµí,ÄúµÄî£ÖÇÖ®Ñ¡
-			    </div>
-			</div>
-            <div class="ls-layer" rel="slidedelay: 3000;">
-				<img class="ls-s2" src="images/slider/monitor_01.png" alt="sublayer" rel="durationin: 1900; easingin: easeOutQuad" />
-				<img class="ls-s3" src="images/slider/monitor_02.png" alt="sublayer" rel="durationin: 1200; easingin: easeOutQuad" />
-				<div class="ls-s11" style="padding: 20px; width: 440px; left: 50px; top: 40px;color: white; text-shadow: none; font-size: 30px; font-weight: bold; line-height:auto;">
-				    »ªÇ¿µ³·çÁ®Õþ½¨Éè¿¼ÆÀÏµÍ³
-			    </div>
-                <p id="l5text1" class="ls-s12" style="top:100px;">
-                    3ÄêµÄÓÃ»§Ó¦ÓÃ¾­Ñé¼ÛÖµ»ýµí<br />
-                    ¹á´©ÔðÈÎ·Ö½â¡¢¿¼ºË¡¢×·¾¿Èý¸öÖØµã»·½Ú<br />
-                    ½¨Á¢³ÐÇ°Æôºó£¬ÑÏ¸ñ¹«ÕýµÄÁ¬Ðø¿¼ºËÆÀ¼ÛÌåÏµ<br />
-				    ÇáËÉ×éÖ¯±äÄêµ×¼¯ÖÐ¼ì²éÎªÈÕ³£¿¼ºË,µÃ·ÖÊµÊ±ÌåÏÖ<br />
-                    ¼ÓËÙ½á¹ûµ½ÔËÓÃµÄ¹ý³Ì
-				</p>
-			    <div class="ls-s2" style="left: 70px; top: 220px;"><a class="button large black" href="#">ÏêÏ¸ÁË½â</a></div>
-		    </div>
-                
-            <div class="ls-layer" rel="slidedelay: 3000;">
-			  <div class="ls-s2" style="left: 50px; top: 50px;">
-				<a href="index.html"><img src="images/slider/mzcp_01.png" alt="" /></a>
-                <!--<iframe src="http://player.vimeo.com/video/40977081" width="500" height="300" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>	-->					
-			  </div>
-			<div class="ls-s3" style="padding: 20px; width: 440px; left: 580px; top: 40px;            color: white; text-shadow: none; font-size: 30px; font-weight: bold; line-height            : auto;">
-		    »ªÇ¿ÍøÉÏÃñÖ÷²âÆÀÏµÍ³
-			</div>
-              <p id="l5text2" class="ls-s3" style="top:100px; left: 600px;">
-			   ÇáËÉ¶¨ÖÆÐÎÊ½¶àÑùµÄ²âÆÀ±íµ¥<br />
-               ¿ÉÕë¶Ô²»Í¬²âÆÀ¶ÔÏó¶¨ÖÆÄÚÈÝ<br />
-               Ò»¼üÍ³¼Æ²âÆÀ¸÷Ïî½á¹û<br />
-               ÅÅÃû·ÖÎö¡¢ÂúÒâ¶È·ÖÎö¡¢Í¼ÐÎ·ÖÎö<br />
-		      </p>
-              <div class="ls-s2" style="left: 600px; top: 220px;"><a class="button large grey" href="#">ÏêÏ¸ÁË½â</a></div>
-			</div>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" target="_self">é¦–é¡µ</a></li>
+            <li><a href="#" target="_self">é€šçŸ¥å…¬å‘Š</a></li>
+            <li><a href="#" target="_self">åœ¨çº¿å­¦ä¹ </a></li>
+            <li><a href="#" target="_self">åœ¨çº¿è€ƒè¯•</a></li>
+          </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="padding-top:45px;margin-bottom:10px;padding-bottom:0px;">
+          <div class="col-lg-6">
+            <h1>åœ¨çº¿è€ƒè¯•ç³»ç»Ÿ</h1>
+          </div> 
+          <div class="col-lg-3 pull-right" style="margin-top:30px;">
+               <p>
+               <button type="button" class="btn-sm btn-info" style="width:80px;margin-right:5px;">æ³¨  å†Œ</button>
+               <button type="button" class="btn-sm btn-warning" style="width:80px;">ç™»  å½•</button>
+               </p>
+          </div>   
+</div>
+
+<!-- banner -->
+<div class="container">
+	<div class="wrap">
+		<div class="pic1 pic">
+			<div class="pic_num1 pic_num"></div>
 		</div>
-  </div><!-- END SLIDER -->
-    
-    <div class="main" style="margin-top:5px;"><!-- MAIN -->
-      <div class="container_12">
-        <div class="grid_3">
-          <section class="tabs" style="width:220px;">
-	            <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
-		        <label for="tab-1" class="tab-label-1" style="font-size:1em;">»ªÇ¿ÐÂÎÅ</label>
-		
-	            <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2" />
-		        <label for="tab-2" class="tab-label-2" style="font-size:1em;">»ªÇ¿¹«¸æ</label>
-			    <div class="clear-shadow"></div>
-		        <div class="content" style="width:220px;height:254px;overflow:hidden;padding:0px;">
-                    <div class="content-1" style="padding:10px 0px 10px 5px;">
-                        <ul style="width:220px;height:220px;z-index:9999;padding:0px;position:relative;display:block;">
-                            <li>
-                                Lorem ipsum dolor sit amet
-                            </li>
-                            <li>
-                                Class aptent taciti sociosqu
-                            </li>
-                            <li>
-                                Class aptent taciti sociosqu
-                            </li> 
-                        </ul>
-                        <p style="text-align:right;"><a href="#" style="font-size:0.8em;font-style:italic;">¸ü¶à...</a>&nbsp;&nbsp;</p>
-                    </div>
-                    <div class="content-2" style="padding:10px 0px 10px 5px;">
-                        <ul style="width:220px;height:220px;padding:0px;position:relative;display:block;">
-                            <li>
-                                Lorem ipsum dolor sit amet
-                            </li>
-                            <li>
-                                Class aptent taciti sociosqu
-                            </li>
-                            <li>
-                                Class aptent taciti sociosqu
-                            </li> 
-                        </ul>
-                        <p style="text-align:right;"><a href="#" style="font-size:0.8em;font-style:italic;">¸ü¶à...</a>&nbsp;&nbsp;</p>
-                    </div>
-                </div>
-			</section>
-          </div>
-          <ul class="portfolio_4_col group"><!-- PORTFOLIO ITEMS -->
-            <li class="item" data-id="id-1" data-type="html">
-              <a href="images/portfolio/01.jpg" rel="prettyPhoto[portfolio]"><img src="images/portfolio/01.jpg" alt="" /></a>
-              <h5 class="uppercase">
-                <a href="#">ÐÐÕþÊÂÒµÓ¦ÓÃÏµÁÐ</a>
-              </h5>
-              <p>
-                Ö÷ÒªÃæÏòÐÐÕþÊÂÒµµ¥Î»µÄÓ¦ÓÃÏµÍ³,Ö÷ÒªÃæÏòµ³·çÁ®Õþ½¨Éè¡¢µ³Ô±ÐÅÏ¢¹ÜÀí¡¢Á®Õþµµ°¸¡¢Èý¹«¾­·Ñ\ÖØ´óÊÂÏî¼à¶½Óë¹ÜÀíµÈ.
-              </p>
-              <a href="portfolio_single.html" class="button large white" style="width:55px;">²é¿´ÏêÏ¸</a>
-            </li>
-            <li class="item" data-id="id-2" data-type="html">
-              <a href="images/portfolio/02.png" rel="prettyPhoto[portfolio]"><img src="images/portfolio/02.png" alt="" /></a>
-              <h5 class="uppercase">
-                <a href="#">ÆóÒµ¹ÜÀíÓ¦ÓÃÏµÁÐ</a>
-              </h5>
-              <p>
-                ÆóÒµÐÅÏ¢»¯¹ÜÀí×¨¼Ò,²ÆÎñ¹ÜÀí¡¢½øÏú´æ¹ÜÀí¡¢Éú²ú¹ÜÀí¡¢MES¡¢OA°ì¹«¡¢HR¡¢CRMµÈµÈ.
-              </p><a href="portfolio_single.html" class="button large white" style="width:55px;">²é¿´ÏêÏ¸</a>
-            </li>
-            <li class="item" data-id="id-3" data-type="html">
-              <a href="images/portfolio/03.jpg" rel="prettyPhoto[portfolio]"><img src="images/portfolio/03.jpg" alt="" /></a>
-              <h5 class="uppercase">
-                Èí¼þ¶¨ÖÆÍâ°ü·þÎñ
-              </h5>
-              <p>
-                ÎªÄúÁ¿Éí¶¨ÖÆÈí¼þ,×ÀÃæÓ¦ÓÃ¡¢ÍøÂçÓ¦ÓÃ¡¢ÊÖ»úÓ¦ÓÃ¡¢Êý¾Ý¿âÓ¦ÓÃ¡¢µç×ÓÉÌÎñÓ¦ÓÃ;B/S¼Ü¹¹¡¢C/S¼Ü¹¹;
-              </p><a href="portfolio_single.html" class="button large white" style="width:55px;">²é¿´ÏêÏ¸</a>
-            </li>
-          </ul><!-- END PORTFOLIO ITEMS -->
-        </div>
-    </div><!-- END MAIN -->
-    <div class="bottom" style="margin-top:-20px;" ><!-- BOTTOM -->
-        <div class="container_12" style="border-top-style:dashed;border-top-width:1px;border-top-color:#eeeeee;padding-top:0px;" >
-            <div class="grid_3 box_light_gray inner" style="padding-top:0px;">
-                <h5 class="uppercase" style="background:transparent url(images/icons/Binder_s.png) no-repeat 5px 5px;height:25px;padding:10px 0px 0px 35px;">
-                    ²úÆ·ÐòÁÐ
-                </h5>
-                <section class="ac-container">
-				<div>
-					<input id="ac-13" name="accordion-4" type="radio" checked="" />
-					<label for="ac-13" style="font-size:1em;">ÐÐÕþÊÂÒµÓ¦ÓÃG+ÏµÁÐ</label>
-					<article class="ac-medium" >
-						<ul style="margin:10px;">
-                            <li>
-                                <a href="#">µ³·çÁ®Õþ½¨ÉèÔðÈÎÖÆ¿¼ÆÀÏµÍ³</a>
-                            </li>
-                            <li>
-                                <a href="#">µç×Óµ³½¨×ÛºÏ¹ÜÀíÏµÍ³</a>
-                            </li>
-                            <li>
-                                <a href="#">"Èý¹«¾­·Ñ"¼à¶½Óë¹ÜÀíÏµÍ³</a>
-                            </li>
-                            <li>
-                                <a href="#">ÍøÉÏÃñÖ÷²âÆÀÏµÍ³</a>
-                            </li>
-                            <li>
-                                <a href="#">"ÈýÖØÒ»´ó"¼à¶½Óë¹ÜÀíÏµÍ³</a>
-                            </li>
-                            <li>
-                                <a href="#">Á®Õþµµ°¸ÏµÍ³</a>
-                            </li>
-                        </ul>
-					</article>
-				</div>
-				<div>
-					<input id="ac-14" name="accordion-4" type="radio" />
-					<label for="ac-14" style="font-size:1em;">ÆóÒµ¹ÜÀíÓ¦ÓÃH+ÏµÁÐ</label>
-					<article class="ac-medium">
-						<ul style="margin:10px;">
-                            <li>
-                                <a href="#">»ªÇ¿H3²úÆ·ÏµÁÐ</a>
-                            </li>
-                            <li>
-                                <a href="#">»ªÇ¿H6²úÆ·ÏµÁÐ</a>
-                            </li>
-                            <li>
-                                <a href="#">»ªÇ¿H+²úÆ·ÏµÁÐ</a>
-                            </li>
-                        </ul>
-					</article>
-				</div>
-				<div>
-					<input id="ac-15" name="accordion-4" type="radio" />
-					<label for="ac-15" style="font-size:1em;">Èí¼þ¶¨ÖÆÓ¦ÓÃD+ÏµÁÐ</label>
-					<article class="ac-large">
-						<ul style="margin:10px;">
-                            <li>
-                                <a href="#">»ªÇ¿H3²úÆ·ÏµÁÐ</a>
-                            </li>
-                            <li>
-                                <a href="#">»ªÇ¿H6²úÆ·ÏµÁÐ</a>
-                            </li>
-                            <li>
-                                <a href="#">»ªÇ¿H+²úÆ·ÏµÁÐ</a>
-                            </li>
-                        </ul>
-					</article>
-				</div>
-				<div>
-					<input id="ac-16" name="accordion-4" type="radio" />
-					<label for="ac-16" style="font-size:1em;">ÍøÕ¾½¨ÉèÍâ°üW+ÏµÁÐ</label>
-					<article class="ac-large">
-						<ul style="margin:10px;">
-                            <li>
-                                <a href="#">»ªÇ¿H3²úÆ·ÏµÁÐ</a>
-                            </li>
-                            <li>
-                                <a href="#">»ªÇ¿H6²úÆ·ÏµÁÐ</a>
-                            </li>
-                            <li>
-                                <a href="#">»ªÇ¿H+²úÆ·ÏµÁÐ</a>
-                            </li>
-                        </ul>
-					</article>
-				</div>
-			</section>
+		<div class="pic2 pic">
+			<div class="pic_num2 pic_num"></div>
+		</div>
+		<div class="pic3 pic">
+			<div class="pic_num3 pic_num"></div>
+		</div>
+		<div class="pic4 pic">
+			<div class="pic_num4 pic_num"></div>
+		</div>
+		<div class="pic5 pic">
+			<div class="pic_num5 pic_num"></div>
+		</div>
+		<div class="pic6 pic">
+			<div class="pic_num6 pic_num"></div>
+		</div>
+	</div>
+</div>
+<!-- content -->
+<div class="container">
+          <div class="row">
+          <div class="col-lg-4">
+            <div class="bs-example">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  æ–‡ç« æ ‡é¢˜
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+              </div>
             </div>
-            <div class="grid_9" style="padding:0;margin:0;width:720px;">
-                <h5 class="uppercase" style="background:transparent url(images/icons/Circlebox9_s.png) no-repeat 5px 5px;height:25px;padding:10px 0px 0px 38px;">
-                    ×î½üÏîÄ¿
-                </h5>
-              <ul class="portfolio_4_col group"><!-- PORTFOLIO ITEMS -->
-                <li class="item" data-id="id-1" data-type="html">
-                  <a href="images/portfolio/01.jpg" rel="prettyPhoto[portfolio]"><img src="images/portfolio/01.jpg" alt="" /></a>
-                  <h5 class="uppercase">
-                    Èç¸ÞÊÐµ³·çÁ®Õþ½¨Éè¿¼ÆÀÏµÍ³
-                  </h5>
-                  <p>
-                    ¸ÃÏîÄ¿ÓÚ2013Äê12ÔÂ½»¸¶£¬Í¨¹ý¸ÃÏîÄ¿µÄ½¨Á¢£¬È«ÃæÊµÏÖÁËÈç¸ÞÊÐ¼ÍÂÉ¼ì²éÎ¯Ô±»á¶Ôµ³·çÁ®Õþ½¨ÉèÔðÈÎÖÆµÄÂäÊµ¡¢¿¼ºË¡¢ÆÀ¼Û¡¢Ó¦ÓÃµÄÊý×Ö»¯£¬½«
-                    Äêµ×Í»»÷¼ì²é±ä³ÉÁË¹á´©È«ÄêµÄ³£Ì¬»¯¿¼ºË...
-                  </p><a href="portfolio_single.html" class="link_bottom">View details</a>
-                </li>
-                <li class="item" data-id="id-2" data-type="html">
-                  <a href="images/portfolio/02.jpg" rel="prettyPhoto[portfolio]"><img src="images/portfolio/02.jpg" alt="" /></a>
-                  <h5 class="uppercase">
-                    Èç¸ÞÊÐ"ÈýÖØÒ»´ó"¼à¹ÜÏµÍ³
-                  </h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit, sed do eiusmod tempor incididunt ut labore.
-                  </p><a href="portfolio_single.html" class="link_bottom">View details</a>
-                </li>
-                <li class="item" data-id="id-3" data-type="html">
-                  <a href="images/portfolio/03.jpg" rel="prettyPhoto[portfolio]"><img src="images/portfolio/03.jpg" alt="" /></a>
-                  <h5 class="uppercase">
-                    "ÎÄÇ®Íø"µÚÈý·½Î¬ÐÞ·þÎñÆ½Ì¨
-                  </h5>
-                  <p>
-                    <!--Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit, sed do eiusmod tempor incididunt ut labore.-->
-                  </p><a href="portfolio_single.html" class="link_bottom">View details</a>
-                </li>
-              </ul><!-- END PORTFOLIO ITEMS -->
+          </div>
+
+          <div class="col-lg-4">
+            <div class="bs-example">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  æ–‡ç« æ ‡é¢˜
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+              </div>
             </div>
-        </div>
-      </div>
-      
-    <!-- END BOTTOM -->
-    
-    <div class="footer_middle" style="margin-top:-20px;"><!-- FOOTER MIDDLE -->
-      <div class="container_12">
-        <div class="grid_2">
-          <h5>
-            ÍøÕ¾µ¼º½
-          </h5>
-          <div class="list-type-footer">
-            <ul>
-              <li>
-                <a href="index.html" class="grey">Ê×Ò³</a>
-              </li>
-              <li>
-                <a href="portfolio_4_col.html" class="grey">²úÆ·¼¼Êõ</a>
-              </li>
-              <li>
-                <a href="blog.html" class="grey">·þÎñÌåÑé</a>
-              </li>
-              <li>
-                <a href="features.html" class="grey">ÈË²ÅÕÐÆ¸</a>
-              </li>
-              <li>
-                <a href="contact.html" class="grey">ÎÒÃÇµÄÍÅ¶Ó</a>
-              </li>
-              <li>
-                <a href="contact.html" class="grey">ÁªÏµÎÒÃÇ</a>
-              </li>
-            </ul>
           </div>
-        </div>
-        <div class="grid_2">
-          <h5>
-            ¼¼ÊõÓÅÊÆ
-          </h5>
-          <div class="list-type-footer">
-            <ul>
-              <li>
-                <a href="index.html" class="grey">¹ãÀ«µÄ·þÎñÁìÓò</a>
-              </li>
-              <li>
-                <a href="portfolio_4_col.html" class="grey">ÉîºñµÄÐÐÒµ»ýÀÛ</a>
-              </li>
-              <li>
-                <a href="blog.html" class="grey">·á¸»µÄÑÐ·¢¾­Ñé</a>
-              </li>
-              <li>
-                <a href="features.html" class="grey">³ä×ãµÄÈË²Å¹©Ó¦</a>
-              </li>
-              <li>
-                <a href="contact.html" class="grey">ÑÏ¸ñµÄ±£ÃÜ´ëÊ©</a>
-              </li>
-              <li>
-                <a href="contact.html" class="grey">ÍêÉÆµÄÊÛºó·þÎñ</a>
-              </li>
-            </ul>
+
+                    <div class="col-lg-4">
+            <div class="bs-example">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  æ–‡ç« æ ‡é¢˜
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="grid_2">
-          <h5>
-            Ã÷ÐÇ²úÆ·
-          </h5>
-          <div class="list-type-footer">
-            <ul>
-              <li>
-                <a href="#" class="grey">µ³·çÁ®Õþ½¨Éè¿¼ÆÀÏµÍ³</a>
-              </li>
-              <li>
-                <a href="#" class="grey">ÍøÉÏÃñÖ÷²âÆÀÏµÍ³</a>
-              </li>
-              <li>
-                <a href="#" class="grey">µç×Óµ³Ô±ÐÅÏ¢¹ÜÀíÆ½Ì¨</a>
-              </li>
-              <li>
-                <a href="#" class="grey">ÊÖ¹¤ÒÕÆ·ÐÐÒµ¹ÜÀíÈí¼þ</a>
-              </li>
-              <li>
-                <a href="#" class="grey">ËÇÁÏÐÐÒµ¹ÜÀíÈí¼þ</a>
-              </li>
-              <li>
-                <a href="#" class="grey">Ô°ÁÖÂÌ»¯ÐÐÒµ¹ÜÀíÈí¼þ</a>
-              </li>
-            </ul>
           </div>
-        </div>
-        <div class="grid_3 latest_posts">
-          <h5>
-            ×î½üÐÂÎÅ
-          </h5><img class="img_float_left" src="images/thumb_1.jpg" width="40" height="40" alt="staff1" />
-          <p>
-            <strong>Lorem ipsum dolor sit amet consectetur
-            adipisicing elit.</strong><br />
-            30 June 2012
-          </p><img class="img_float_left" src="images/thumb_2.jpg" width="40" height="40" alt="staff1" />
-          <p>
-            <strong>Lorem ipsum dolor sit amet consectetur
-            adipisicing elit.</strong><br />
-            29 June 2012
-          </p><img class="img_float_left" src="images/thumb_3.jpg" width="40" height="40" alt="staff1" />
-          <p>
-            <strong>Lorem ipsum dolor sit amet consectetur
-            adipisicing elit.</strong><br />
-            28 June 2012
-          </p>
-        </div>
-        <div class="grid_3">
-          <h5>
-            ÁªÏµÎÒÃÇ
-          </h5>
-          <div class="list-type-footer">
-            <p class="grey" style="font-size:1.2em">
-              ÄÏÍ¨»ªÇ¿Í¨ÓÃÈí¼þÓÐÏÞ¹«Ë¾
-            </p><br />
-            <p class="grey">
-              ½­ËÕÊ¡ÄÏÍ¨ÊÐÁôÑ§Éú´´ÒµÔ°¸½Â¥2²ã
-            </p><br />
-            <p class="grey" style="font-size:1.4em">
-              Ãâ·Ñµç»°: 400-666-8049
-            </p><br />
-            <p class="grey">
-              Email: <a href="mailto:mac@hq365.net" class="grey">info@hq365.net</a>
-            </p>
+</div>
+
+<div class="container">
+<div class="row">
+          <div class="col-lg-4">
+            <div class="bs-example">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  æ–‡ç« æ ‡é¢˜
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div><!-- FOOTER MIDDLE -->
-    
-    <div class="footer"><!-- FOOTER -->
-      <div class="container_12">
-        <div class="grid_6">
-          <p class="copyright">
-            &copy; Copyright &copy; 2013.ÄÏÍ¨»ªÇ¿Í¨ÓÃÈí¼þÓÐÏÞ¹«Ë¾ All rights reserved.
-          </p>
-        </div>
-        <div class="grid_6">
-          <div class="social-box">
-            <a href="#"><img src="images/social_facebook.png" width="19" height="18" alt="" /></a> <a href="#"><img src="images/social_twitter.png" width="19" height="18" alt="" /></a> <a href="#"><img src="images/social_flickr.png" width="19" height="18" alt="" /></a> <a href="#"><img src="images/social_linkedin.png" width="19" height="19" alt="" /></a> <a href="#"><img src="images/social_dribble.png" width="19" height="18" alt="" /></a>
+
+          <div class="col-lg-4">
+            <div class="bs-example">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  æ–‡ç« æ ‡é¢˜
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div><!-- END FOOTER -->
-    
-<script src="layerslider/jQuery/jquery-easing-1.3.js" type="text/javascript"></script>
-<script src="layerslider/js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#layerslider').layerSlider({
-            skinsPath: 'layerslider/skins/',
-            animateFirstLayer: true,
-            navPrevNext: true,
-            navStartStop: false,
-            navButtons: false,
-            autoPlayVideos: false,
-            skin: 'minimal'
-        });
-    });		
-</script>
-    </form>
+
+                    <div class="col-lg-4">
+            <div class="bs-example">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  æ–‡ç« æ ‡é¢˜
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+                <a href="#" class="list-group-item">è¿™æ˜¯ä¸€ç¯‡æµ‹è¯•æ–‡ç« çš„é“¾æŽ¥
+                </a>
+              </div>
+            </div>
+          </div>
+</div>
+</div>
+
+<!-- footer -->
+	<footer>
+          <div class="container ">
+          <div class="row">
+              <div class="pull-left col-lg-4" style="float:left;">æŠ€æœ¯æ”¯æŒï¼š<a href="#">åŽå¼ºé€šç”¨è½¯ä»¶å…¬å¸</a></div>
+              <ul class="list-inline pull-right" style="float:left;">
+              <li class="pull-left" style><a href="#">é¦–é¡µ</a></li>
+              <li class="pull-left"><a href="#">é€šçŸ¥å…¬å‘Š</a></li>
+              <li class="pull-left"><a href="#">åœ¨çº¿å­¦ä¹ </a></li>
+              <li class="pull-left"><a href="#">åœ¨çº¿è€ƒè¯•</a></li>
+              <li class="pull-left"><a href="#top">è¿”å›žé¡¶éƒ¨</a></li>              
+              </ul>          
+          </div>
+      </footer>
 </body>
 </html>
