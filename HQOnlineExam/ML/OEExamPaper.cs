@@ -89,10 +89,6 @@ namespace HQOnlineExam.ML
         {
         }
 
-
-
-
-
         public string ToJson()
         {
             return Utils.ConvertToJson(this);

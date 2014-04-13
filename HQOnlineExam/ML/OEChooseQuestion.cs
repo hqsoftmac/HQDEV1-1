@@ -14,7 +14,7 @@ namespace HQOnlineExam.ML
 
        public string FQuestionType { get; set; }
 
-       public Int64 FQuestionType { get; set; }
+       public Int64 FQuestionId { get; set; }
 
        public OEChooseQuestion()
        {

@@ -43,12 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DA\OEChooseQuestionDA.cs" />
+    <Compile Include="DA\OECombineBankDA.cs" />
+    <Compile Include="DA\OECombineTypeDA.cs" />
     <Compile Include="DA\OEContentClassDA.cs" />
+    <Compile Include="DA\OEExamItemDA.cs" />
+    <Compile Include="DA\OEExamPaperDA.cs" />
+    <Compile Include="DA\OEPaperDifficultyDA.cs" />
+    <Compile Include="DA\OEQuestionBankDA.cs" />
+    <Compile Include="DA\OEQuestionDA.cs" />
+    <Compile Include="DA\OEStudentDA.cs" />
+    <Compile Include="ML\OEChooseQuestion.cs" />
     <Compile Include="ML\OECombineBank.cs" />
+    <Compile Include="ML\OECombineType.cs" />
     <Compile Include="ML\OEContentClass.cs" />
     <Compile Include="ML\OEExamItem.cs" />
+    <Compile Include="ML\OEExamPaper.cs" />
+    <Compile Include="ML\OEPaperDifficulty.cs" />
     <Compile Include="ML\OEQuestion.cs" />
     <Compile Include="ML\OEQuestionBank.cs" />
+    <Compile Include="ML\OEStudent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
