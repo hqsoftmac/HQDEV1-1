@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Biz\OEChooseQuestionBiz.cs" />
     <Compile Include="DA\OEChooseQuestionDA.cs" />
     <Compile Include="DA\OECombineBankDA.cs" />
     <Compile Include="DA\OECombineTypeDA.cs" />
@@ -65,9 +66,7 @@
     <Compile Include="ML\OEStudent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Biz\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
