@@ -10,31 +10,31 @@ using HQLib;
 using HQConst.Const;
 namespace HQOnlineExam.Biz
 {
-    //OEChooseQuestion
-    public partial class OEChooseQuestionBiz
+    //OECombineBank
+    public partial class OECombineBankBiz
     {
 
-        public List<OEChooseQuestion> Select(NameValueCollection where)
+        public List<OECombineBank> Select(NameValueCollection where)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where).DataTableToList<OEChooseQuestion>();
+            OECombineBankDA da = new OECombineBankDA();
+            return da.Select(where).DataTableToList<OECombineBank>();
         }
 
-        public List<OEChooseQuestion> Select(NameValueCollection where, NameValueCollection orderby)
+        public List<OECombineBank> Select(NameValueCollection where, NameValueCollection orderby)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where, orderby).DataTableToList<OEChooseQuestion>();
+            OECombineBankDA da = new OECombineBankDA();
+            return da.Select(where, orderby).DataTableToList<OECombineBank>();
         }
 
-        public List<OEChooseQuestion> Select(NameValueCollection where, NameValueCollection orderby, int pageIndex, int pageSize, out int totalCount)
+        public List<OECombineBank> Select(NameValueCollection where, NameValueCollection orderby, int pageIndex, int pageSize, out int totalCount)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where, orderby, pageIndex, pageSize, out totalCount).DataTableToList<OEChooseQuestion>();
+            OECombineBankDA da = new OECombineBankDA();
+            return da.Select(where, orderby, pageIndex, pageSize, out totalCount).DataTableToList<OECombineBank>();
         }
 
         public Int32 Insert(NameValueCollection parameters, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OECombineBankDA da = new OECombineBankDA();
             Int32 result = da.Insert(parameters);
             if (result > 0)
             {
@@ -47,20 +47,20 @@ namespace HQOnlineExam.Biz
             return result;
         }
 
-        public Int32 Insert(OEChooseQuestion item, out ErrorEntity ErrInfo)
+        public Int32 Insert(OECombineBank item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
 
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
+            parameters.Add("FQBankId", item.FQBankId.ToString());
+            parameters.Add("FQBnakRate", item.FQBnakRate.ToString());
             return Insert(parameters, out ErrInfo);
         }
 
         public int Update(NameValueCollection parameters, NameValueCollection where, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OECombineBankDA da = new OECombineBankDA();
             int result = da.Update(parameters, where);
             if (result > 0)
             {
@@ -74,25 +74,24 @@ namespace HQOnlineExam.Biz
 
         }
 
-        public Int32 Update(OEChooseQuestion item, out ErrorEntity ErrInfo)
+        public Int32 Update(OECombineBank item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
 
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
+            parameters.Add("FQBankId", item.FQBankId.ToString());
+            parameters.Add("FQBnakRate", item.FQBnakRate.ToString());
             NameValueCollection where = new NameValueCollection();
             where.Add("FPaperId", item.FPaperId.ToString());
-            where.Add("FQuestionType", item.FQuestionType);
-            where.Add("FQuestionId", item.FQuestionId.ToString());
+            where.Add("FQBankId", item.FQBankId.ToString());
             return Update(parameters, where, out ErrInfo);
         }
 
 
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OECombineBankDA da = new OECombineBankDA();
             int result = da.Delete(where);
             if (result > 0)
             {

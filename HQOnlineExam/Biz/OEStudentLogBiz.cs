@@ -10,31 +10,31 @@ using HQLib;
 using HQConst.Const;
 namespace HQOnlineExam.Biz
 {
-    //OEChooseQuestion
-    public partial class OEChooseQuestionBiz
+    //OEStudentLog
+    public partial class OEStudentLogBiz
     {
 
-        public List<OEChooseQuestion> Select(NameValueCollection where)
+        public List<OEStudentLog> Select(NameValueCollection where)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where).DataTableToList<OEChooseQuestion>();
+            OEStudentLogDA da = new OEStudentLogDA();
+            return da.Select(where).DataTableToList<OEStudentLog>();
         }
 
-        public List<OEChooseQuestion> Select(NameValueCollection where, NameValueCollection orderby)
+        public List<OEStudentLog> Select(NameValueCollection where, NameValueCollection orderby)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where, orderby).DataTableToList<OEChooseQuestion>();
+            OEStudentLogDA da = new OEStudentLogDA();
+            return da.Select(where, orderby).DataTableToList<OEStudentLog>();
         }
 
-        public List<OEChooseQuestion> Select(NameValueCollection where, NameValueCollection orderby, int pageIndex, int pageSize, out int totalCount)
+        public List<OEStudentLog> Select(NameValueCollection where, NameValueCollection orderby, int pageIndex, int pageSize, out int totalCount)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where, orderby, pageIndex, pageSize, out totalCount).DataTableToList<OEChooseQuestion>();
+            OEStudentLogDA da = new OEStudentLogDA();
+            return da.Select(where, orderby, pageIndex, pageSize, out totalCount).DataTableToList<OEStudentLog>();
         }
 
         public Int32 Insert(NameValueCollection parameters, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OEStudentLogDA da = new OEStudentLogDA();
             Int32 result = da.Insert(parameters);
             if (result > 0)
             {
@@ -47,20 +47,23 @@ namespace HQOnlineExam.Biz
             return result;
         }
 
-        public Int32 Insert(OEChooseQuestion item, out ErrorEntity ErrInfo)
+        public Int32 Insert(OEStudentLog item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
 
             NameValueCollection parameters = new NameValueCollection();
-            parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
+            parameters.Add("LogId", item.LogId.ToString());
+            parameters.Add("FStudentId", item.FStudentId.ToString());
+            parameters.Add("FLogType", item.FLogType);
+            parameters.Add("FLogContent", item.FLogContent);
+            parameters.Add("FLogIp", item.FLogIp);
+            parameters.Add("LogTime", item.LogTime.ToString());
             return Insert(parameters, out ErrInfo);
         }
 
         public int Update(NameValueCollection parameters, NameValueCollection where, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OEStudentLogDA da = new OEStudentLogDA();
             int result = da.Update(parameters, where);
             if (result > 0)
             {
@@ -74,25 +77,26 @@ namespace HQOnlineExam.Biz
 
         }
 
-        public Int32 Update(OEChooseQuestion item, out ErrorEntity ErrInfo)
+        public Int32 Update(OEStudentLog item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
 
             NameValueCollection parameters = new NameValueCollection();
-            parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
+            parameters.Add("LogId", item.LogId.ToString());
+            parameters.Add("FStudentId", item.FStudentId.ToString());
+            parameters.Add("FLogType", item.FLogType);
+            parameters.Add("FLogContent", item.FLogContent);
+            parameters.Add("FLogIp", item.FLogIp);
+            parameters.Add("LogTime", item.LogTime.ToString());
             NameValueCollection where = new NameValueCollection();
-            where.Add("FPaperId", item.FPaperId.ToString());
-            where.Add("FQuestionType", item.FQuestionType);
-            where.Add("FQuestionId", item.FQuestionId.ToString());
+            where.Add("LogId", item.LogId.ToString());
             return Update(parameters, where, out ErrInfo);
         }
 
 
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OEStudentLogDA da = new OEStudentLogDA();
             int result = da.Delete(where);
             if (result > 0)
             {

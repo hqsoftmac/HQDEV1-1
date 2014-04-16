@@ -44,6 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Biz\OEChooseQuestionBiz.cs" />
+    <Compile Include="Biz\OECombineBankBiz.cs" />
+    <Compile Include="Biz\OECombineTypeBiz.cs" />
+    <Compile Include="Biz\OEExamItemBiz.cs" />
+    <Compile Include="Biz\OEExamPaperBiz.cs" />
+    <Compile Include="Biz\OEPaperDifficultyBiz.cs" />
+    <Compile Include="Biz\OEQuestionBankBiz.cs" />
+    <Compile Include="Biz\OEQuestionBiz.cs" />
+    <Compile Include="Biz\OEStudentBiz.cs" />
     <Compile Include="DA\OEChooseQuestionDA.cs" />
     <Compile Include="DA\OECombineBankDA.cs" />
     <Compile Include="DA\OECombineTypeDA.cs" />
@@ -66,7 +74,12 @@
     <Compile Include="ML\OEStudent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HQConst\HQConst.csproj">
+      <Project>{97921FD5-8B9E-40D7-BB8D-26CE125BACEC}</Project>
+      <Name>HQConst</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

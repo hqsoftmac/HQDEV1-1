@@ -10,31 +10,31 @@ using HQLib;
 using HQConst.Const;
 namespace HQOnlineExam.Biz
 {
-    //OEChooseQuestion
-    public partial class OEChooseQuestionBiz
+    //OEPaperDifficulty
+    public partial class OEPaperDifficultyBiz
     {
 
-        public List<OEChooseQuestion> Select(NameValueCollection where)
+        public List<OEPaperDifficulty> Select(NameValueCollection where)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where).DataTableToList<OEChooseQuestion>();
+            OEPaperDifficultyDA da = new OEPaperDifficultyDA();
+            return da.Select(where).DataTableToList<OEPaperDifficulty>();
         }
 
-        public List<OEChooseQuestion> Select(NameValueCollection where, NameValueCollection orderby)
+        public List<OEPaperDifficulty> Select(NameValueCollection where, NameValueCollection orderby)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where, orderby).DataTableToList<OEChooseQuestion>();
+            OEPaperDifficultyDA da = new OEPaperDifficultyDA();
+            return da.Select(where, orderby).DataTableToList<OEPaperDifficulty>();
         }
 
-        public List<OEChooseQuestion> Select(NameValueCollection where, NameValueCollection orderby, int pageIndex, int pageSize, out int totalCount)
+        public List<OEPaperDifficulty> Select(NameValueCollection where, NameValueCollection orderby, int pageIndex, int pageSize, out int totalCount)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
-            return da.Select(where, orderby, pageIndex, pageSize, out totalCount).DataTableToList<OEChooseQuestion>();
+            OEPaperDifficultyDA da = new OEPaperDifficultyDA();
+            return da.Select(where, orderby, pageIndex, pageSize, out totalCount).DataTableToList<OEPaperDifficulty>();
         }
 
         public Int32 Insert(NameValueCollection parameters, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OEPaperDifficultyDA da = new OEPaperDifficultyDA();
             Int32 result = da.Insert(parameters);
             if (result > 0)
             {
@@ -47,20 +47,20 @@ namespace HQOnlineExam.Biz
             return result;
         }
 
-        public Int32 Insert(OEChooseQuestion item, out ErrorEntity ErrInfo)
+        public Int32 Insert(OEPaperDifficulty item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
 
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
+            parameters.Add("FDifficulty", item.FDifficulty);
+            parameters.Add("FRate", item.FRate.ToString());
             return Insert(parameters, out ErrInfo);
         }
 
         public int Update(NameValueCollection parameters, NameValueCollection where, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OEPaperDifficultyDA da = new OEPaperDifficultyDA();
             int result = da.Update(parameters, where);
             if (result > 0)
             {
@@ -74,25 +74,24 @@ namespace HQOnlineExam.Biz
 
         }
 
-        public Int32 Update(OEChooseQuestion item, out ErrorEntity ErrInfo)
+        public Int32 Update(OEPaperDifficulty item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
 
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
+            parameters.Add("FDifficulty", item.FDifficulty);
+            parameters.Add("FRate", item.FRate.ToString());
             NameValueCollection where = new NameValueCollection();
             where.Add("FPaperId", item.FPaperId.ToString());
-            where.Add("FQuestionType", item.FQuestionType);
-            where.Add("FQuestionId", item.FQuestionId.ToString());
+            where.Add("FDifficulty", item.FDifficulty);
             return Update(parameters, where, out ErrInfo);
         }
 
 
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {
-            OEChooseQuestionDA da = new OEChooseQuestionDA();
+            OEPaperDifficultyDA da = new OEPaperDifficultyDA();
             int result = da.Delete(where);
             if (result > 0)
             {

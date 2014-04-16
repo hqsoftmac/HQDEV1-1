@@ -180,7 +180,7 @@ namespace HQPartyManage.Biz
             where.Add("condition", "FCommitteeID in (" + idlist + ")");
             return Delete(where, out ErrInfo);
         }
-
+        
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {
             PmOrgCommitteeDA da = new PmOrgCommitteeDA();
