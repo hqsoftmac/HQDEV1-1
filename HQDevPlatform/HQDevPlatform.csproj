@@ -833,8 +833,10 @@
     <Content Include="obj\Debug\HQDevSys.dll" />
     <Content Include="obj\Debug\HQDevSys.pdb" />
     <Content Include="OnlineExam\ClearIE.aspx" />
+    <Content Include="OnlineExam\ContentClass.aspx" />
     <Content Include="OnlineExam\default.aspx" />
     <Content Include="OnlineExam\login.aspx" />
+    <Content Include="OnlineExam\QuestionBank.aspx" />
     <Content Include="partymember\ClearIE.aspx" />
     <Content Include="partymember\default.aspx" />
     <Content Include="partymember\login.aspx" />
@@ -1720,6 +1722,13 @@
     <Compile Include="OnlineExam\ClearIE.aspx.designer.cs">
       <DependentUpon>ClearIE.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OnlineExam\ContentClass.aspx.cs">
+      <DependentUpon>ContentClass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\ContentClass.aspx.designer.cs">
+      <DependentUpon>ContentClass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OnlineExam\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1733,6 +1742,13 @@
     </Compile>
     <Compile Include="OnlineExam\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\QuestionBank.aspx.cs">
+      <DependentUpon>QuestionBank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\QuestionBank.aspx.designer.cs">
+      <DependentUpon>QuestionBank.aspx</DependentUpon>
     </Compile>
     <Compile Include="partymember\ClearIE.aspx.cs">
       <DependentUpon>ClearIE.aspx</DependentUpon>
