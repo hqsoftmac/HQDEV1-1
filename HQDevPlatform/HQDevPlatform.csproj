@@ -836,6 +836,7 @@
     <Content Include="OnlineExam\ContentClass.aspx" />
     <Content Include="OnlineExam\default.aspx" />
     <Content Include="OnlineExam\login.aspx" />
+    <Content Include="OnlineExam\OEQuestion.aspx" />
     <Content Include="OnlineExam\QuestionBank.aspx" />
     <Content Include="partymember\ClearIE.aspx" />
     <Content Include="partymember\default.aspx" />
@@ -1742,6 +1743,13 @@
     </Compile>
     <Compile Include="OnlineExam\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestion.aspx.cs">
+      <DependentUpon>OEQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestion.aspx.designer.cs">
+      <DependentUpon>OEQuestion.aspx</DependentUpon>
     </Compile>
     <Compile Include="OnlineExam\QuestionBank.aspx.cs">
       <DependentUpon>QuestionBank.aspx</DependentUpon>
