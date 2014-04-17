@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,7 @@
     <Compile Include="Biz\OECombineBankBiz.cs" />
     <Compile Include="Biz\OECombineTypeBiz.cs" />
     <Compile Include="Biz\OEContentClassBiz.cs" />
+    <Compile Include="Biz\OEContentClassTreeBiz.cs" />
     <Compile Include="Biz\OEExamItemBiz.cs" />
     <Compile Include="Biz\OEExamPaperBiz.cs" />
     <Compile Include="Biz\OEPaperDifficultyBiz.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="ML\OECombineBank.cs" />
     <Compile Include="ML\OECombineType.cs" />
     <Compile Include="ML\OEContentClass.cs" />
+    <Compile Include="ML\OEContentClassTree.cs" />
     <Compile Include="ML\OEExamItem.cs" />
     <Compile Include="ML\OEExamPaper.cs" />
     <Compile Include="ML\OEPaperDifficulty.cs" />
