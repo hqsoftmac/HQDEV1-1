@@ -129,6 +129,7 @@ namespace HQOnlineExam.Biz
             parameters.Add("FContentClassName", item.FContentClassName);
             parameters.Add("FContentClassContent", item.FContentClassContent);
             parameters.Add("FParentId", item.FParentId.ToString());
+            parameters.Add("FIconPath", item.FIconPath);
             return Insert(parameters, out ErrInfo);
         }
 
@@ -171,16 +172,40 @@ namespace HQOnlineExam.Biz
             parameters.Add("FContentClassName", item.FContentClassName);
             parameters.Add("FContentClassContent", item.FContentClassContent);
             parameters.Add("FParentId", item.FParentId.ToString());
+            parameters.Add("FIconPath", item.FIconPath);
             NameValueCollection where = new NameValueCollection();
             where.Add("FContentClassId", item.FContentClassId.ToString());
             return Update(parameters, where, out ErrInfo);
         }
 
-        public int Delete(string idlist, out ErrorEntity ErrInfo)
+        public Boolean ChkHasChildren(string idlist)
         {
             NameValueCollection where = new NameValueCollection();
-            where.Add("condition", "FContentClassId in (" + idlist + ")");
-            return Delete(where, out ErrInfo);
+            where.Add("condition", "FParentid in (" + idlist + ")");
+            if (Select(where).Count > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+
+        public int Delete(string idlist, out ErrorEntity ErrInfo)
+        {
+            if (!ChkHasChildren(idlist))
+            {
+                ErrInfo = new ErrorEntity("CC010004", "要删除的类别存在下级类别无法删除!");
+                return -1;
+            }
+            else
+            {
+                NameValueCollection where = new NameValueCollection();
+                where.Add("condition", "FContentClassId in (" + idlist + ")");
+                return Delete(where, out ErrInfo);
+            }
         }
 
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)

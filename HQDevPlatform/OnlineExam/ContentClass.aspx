@@ -11,6 +11,7 @@
     内容类别管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPHPageTool" runat="server">
+    <a href="javascript:void(0)" class="btn" id="A2" iconCls="icon-back" onclick="back()" style="display:none;">返回上级</a>
     <a href="javascript:void(0)" class="btn" id="btnadd" iconCls="icon-add" onclick="add()">新增</a>
     <a href="javascript:void(0)" class="btn" id="btndel" iconCls="icon-remove" onclick="del()">删除</a>
 </asp:Content>
@@ -91,6 +92,24 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
     <script type="text/javascript">
+        function back() {
+            var _parentid = $("#hparentid").val();
+            var options = {
+                type: "POST",
+                data: { pid: _parentid },
+                success: function (res) {
+                    $("#hparentid").val(res);
+                    loadgriddata();
+                }
+            };
+            common.Ajax("GetNowParent", options);
+        }
+
+        function downclass(id) {
+            $("#hparentid").val(id);
+            loadgriddata();
+        }
+
         function closewin() {
             $("#addwin").window('close');
         }
@@ -215,7 +234,7 @@
             $('.btn').linkbutton({ plain: true });
             $('.btn1').linkbutton();
             formatgrid("listgrid", "loadgriddata", "hpagenum", "hpagesize", "hsortname", "hsortdirection");
-            //loadgriddata();
+            loadgriddata();
         });
 
         function loadgriddata() {
@@ -241,9 +260,17 @@
                     var json = common.Util.StringToJson(res);
                     $.messager.progress('close');
                     loadgrid("listgrid", json);
+                    var _parentid = $("#hparentid").val();
+                    if (_parentid == "0") {
+                        $("#A2").hide();
+                    }
+                    else {
+                        $("#A2").show();
+                    }
                 }
             };
             common.Ajax("GetGridData", options);
+            
         }
         
     </script>

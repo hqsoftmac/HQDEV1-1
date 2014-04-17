@@ -24,15 +24,32 @@ namespace HQDevPlatform.OnlineExam
 
         }
 
+        public void GetNowParent()
+        {
+            string _id = Parameters["pid"];
+            OEContentClass item = new OEContentClass();
+            OEContentClassBiz biz = new OEContentClassBiz();
+            item = biz.Select(_id);
+            Response.Write(item.FParentId.ToString());
+        }
+
         public void SaveItem()
         {
             string _FContentClassId = Parameters["pFContentClassId"];
             // other paramters fill here
-
+            string _FContentClassCode = Parameters["pFContentClassCode"];
+            string _FContentClassName = Parameters["pFContentClassName"];
+            string _FContentClassContent = Parameters["pFContentClassContent"];
+            string _FIconPath = Parameters["pFIconPath"];
+            string _FParentId = Parameters["pFParentId"];
 
             OEContentClass item = new OEContentClass();
             item.FContentClassId = string.IsNullOrEmpty(_FContentClassId) ? 0 : Convert.ToInt64(_FContentClassId);
-
+            item.FContentClassCode = _FContentClassCode;
+            item.FContentClassName = _FContentClassName;
+            item.FContentClassContent = _FContentClassContent;
+            item.FIconPath = _FIconPath;
+            item.FParentId = string.IsNullOrEmpty(_FParentId) ? 0 : Convert.ToInt64(_FParentId);
             OEContentClassBiz biz = new OEContentClassBiz();
             ErrorEntity ErrInfo = new ErrorEntity();
             if (item.FContentClassId == 0)
@@ -104,15 +121,17 @@ namespace HQDevPlatform.OnlineExam
             OEContentClassBiz biz = new OEContentClassBiz();
             string _searchtext = _searchcontent;
             string wheresql = "";
+            string _parentid = Parameters["pparentid"];
+            wheresql = "(FParentId = " + _parentid + ")";
             if (!string.IsNullOrEmpty(_searchtext))
             {
                 //difine wheresql
                 //for example:wheresql = " (FDepartmentName like '%" + _searchtext + "%') or (FDepartmentCode like '%" + _searchtext + "%')";
-
+                wheresql += " and (FContentClassName like '%" + _searchcontent + "%')";
             }
             else
             {
-                wheresql = "1=1";
+                wheresql += " and (1=1)";
             }
             NameValueCollection where = new NameValueCollection();
             where.Add("condition", wheresql);
