@@ -46,6 +46,7 @@
     <Compile Include="Biz\OEChooseQuestionBiz.cs" />
     <Compile Include="Biz\OECombineBankBiz.cs" />
     <Compile Include="Biz\OECombineTypeBiz.cs" />
+    <Compile Include="Biz\OEContentClassBiz.cs" />
     <Compile Include="Biz\OEExamItemBiz.cs" />
     <Compile Include="Biz\OEExamPaperBiz.cs" />
     <Compile Include="Biz\OEPaperDifficultyBiz.cs" />

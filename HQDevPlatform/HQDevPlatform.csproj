@@ -2089,6 +2089,10 @@
       <Project>{97921FD5-8B9E-40D7-BB8D-26CE125BACEC}</Project>
       <Name>HQConst</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HQOnlineExam\HQOnlineExam.csproj">
+      <Project>{BA5D1DF9-9B99-41C0-A602-CFB2340A65D8}</Project>
+      <Name>HQOnlineExam</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HQPartyManage\HQPartyManage.csproj">
       <Project>{4B2D8DBF-C266-4A6B-93E9-2B52A67EB058}</Project>
       <Name>HQPartyManage</Name>

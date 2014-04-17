@@ -41,7 +41,7 @@
             </table>
         </div>
     </div>
-    <input type="hidden" id="hsortname" value="FContentClassId" />
+    <input type="hidden" id="hsortname" value="FContentClassCode" />
     <input type="hidden" id="hsortdirection" value="asc" />
     <input type="hidden" id="hpagenum" value="1" />
     <input type="hidden" id="hpagesize" value="10" />
@@ -226,6 +226,7 @@
             var _sortdirection = $("#hsortdirection").val();
             var _pagenumber = $("#hpagenum").val();
             var _pagesize = $("#hpagesize").val();
+            var _parentid = $("#hparentid").val();
             var options = {
                 type: "POST",
                 data: {
@@ -233,7 +234,8 @@
                     psortname: _sortname,
                     psortdirection: _sortdirection,
                     ppagenumber: _pagenumber,
-                    ppagesize: _pagesize
+                    ppagesize: _pagesize,
+                    pparentid: _parentid
                 },
                 success: function (res) {
                     var json = common.Util.StringToJson(res);
