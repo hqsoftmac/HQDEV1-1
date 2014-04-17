@@ -260,6 +260,7 @@
                     var json = common.Util.StringToJson(res);
                     $.messager.progress('close');
                     loadgrid("listgrid", json);
+                    $("#listgrid").datagrid("unselectAll");
                     var _parentid = $("#hparentid").val();
                     if (_parentid == "0") {
                         $("#A2").hide();

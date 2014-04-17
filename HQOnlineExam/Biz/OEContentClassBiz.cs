@@ -190,11 +190,31 @@ namespace HQOnlineExam.Biz
             {
                 return true;
             }
+        }
 
+        public Boolean ChkHasQuestionBank(string idlist)
+        {
+            NameValueCollection where = new NameValueCollection();
+            where.Add("condition", "FContentClassId in (" + idlist + ")");
+            OEQuestionBankBiz biz = new OEQuestionBankBiz();
+            if (biz.Select(where).Count > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public int Delete(string idlist, out ErrorEntity ErrInfo)
         {
+            if (!ChkHasQuestionBank(idlist))
+            {
+                ErrInfo = new ErrorEntity("CC010005", "要删除的内容类别下已经设置有题库,不能删除,若要删除,请首先删除该类别下所有的题库!");
+                return -1;
+            }
+            
             if (!ChkHasChildren(idlist))
             {
                 ErrInfo = new ErrorEntity("CC010004", "要删除的类别存在下级类别无法删除!");

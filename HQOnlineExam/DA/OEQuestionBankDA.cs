@@ -10,7 +10,7 @@ namespace HQOnlineExam.DA
     {
         public OEQuestionBankDA()
         {
-            this._selecttable = "t_oe_questionbank";
+            this._selecttable = "v_oe_questionbank";
             this._inserttable = "t_oe_questionbank";
             this._updatetable = "t_oe_questionbank";
             this._deletetable = "t_oe_questionbank";
