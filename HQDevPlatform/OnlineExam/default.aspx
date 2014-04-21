@@ -11,6 +11,7 @@
     <script src="../jquery.min.js" type="text/javascript"></script>
     <script src="../jquery.easyui.min.js" type="text/javascript"></script>
     <script src="../Js/common.js" type="text/javascript"></script>
+    <script src="../js/UIjs.js" type="text/javascript"></script>
 </head>
 <body class="easyui-layout">
     <form id="main" method="post" runat="server">
@@ -69,7 +70,6 @@
     </div>
     </form> 
 </body>
-<script src="../Js/UIjs.js" type="text/javascript"></script>
 <script type="text/javascript">
     function save() {
         var _orgpsw = $("#txtorgpassword").val();

@@ -22,6 +22,14 @@ namespace HQOnlineExam.ML
 
         public string FQBankName { get; set; }
 
+        public string FDisplayQBankName
+        {
+            get
+            {
+                return "[" + FQBankCode + "]" + FQBankName;
+            }
+        }
+
         public string FQBankStatus { get; set; }
 
         public string FQBankStatusName

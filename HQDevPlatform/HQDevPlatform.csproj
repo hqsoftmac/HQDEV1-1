@@ -837,6 +837,7 @@
     <Content Include="OnlineExam\default.aspx" />
     <Content Include="OnlineExam\login.aspx" />
     <Content Include="OnlineExam\OEQuestion.aspx" />
+    <Content Include="OnlineExam\OEQuestionAdd.aspx" />
     <Content Include="OnlineExam\QuestionBank.aspx" />
     <Content Include="partymember\ClearIE.aspx" />
     <Content Include="partymember\default.aspx" />
@@ -1750,6 +1751,12 @@
     </Compile>
     <Compile Include="OnlineExam\OEQuestion.aspx.designer.cs">
       <DependentUpon>OEQuestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestionAdd.aspx.cs">
+      <DependentUpon>OEQuestionAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestionAdd.aspx.designer.cs">
+      <DependentUpon>OEQuestionAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="OnlineExam\QuestionBank.aspx.cs">
       <DependentUpon>QuestionBank.aspx</DependentUpon>

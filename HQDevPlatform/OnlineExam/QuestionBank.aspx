@@ -22,7 +22,7 @@
             </div>
             <div style="float:left;margin-left:10px;border:1px solid #000;padding:0 5px;margin-top:-3px;">
                 <input type="hidden" id="hsearchclassid" value= "" />
-                <label id="lblsearchclassname" style="min-width:200px;">===请选择题库===</label>
+                <label id="lblsearchclassname" style="min-width:200px;">===请选择内容类别===</label>
                 <a href="javascript:void(0)" class="btn" id="A2" iconCls="icon-search" onclick="searchcontentclass()"></a>
             </div>
             <div style="float:left;margin-left:10px;margin-top:3px;">
