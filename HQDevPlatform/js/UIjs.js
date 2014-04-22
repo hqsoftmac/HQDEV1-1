@@ -41,7 +41,7 @@
     $.messager.progress("close");
 });
 
-function refreshtab(_title) {
+function refreshtab(_title,_rel,_url) {
     var currTab = $('#tt').tabs('getTab', _title);
     $('#tt').tabs('update', {
         tab: currTab,

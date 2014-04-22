@@ -21,18 +21,6 @@
     <a href="javascript:void(0)" class="btn" id="btndel" iconCls="icon-remove" onclick="del()">删除</a>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPHContent" runat="server">
-    <div style="width:98%;margin:0 auto;clear:both;margin-top:2px;">
-        <table id="listgrid" class="easyui-datagrid" title="答案列表" style="margin:2px auto;" data-options="singleSelect:false,fitColumns:true,idField:'FItemId',rownumbers:true,pagination:true">
-            <thead>
-                <tr>
-					<th data-options="field:'FItemId',align:'center',checkbox:true">选择</th>
-                    <th data-options="field:'FItemContent',width:300,align:'left'">答案内容</th>
-                    <th data-options="field:'FItemFlagName',width:60,align:'center'">正确答案</th>
-					<th data-options="field:'FOperation',width:80,align:'center'">操作</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
     <div style="width:98%;margin:5px auto;clear:both;">
         <table style="width:100%;margin:0px auto;" bgcolor="#999999" border="0" cellpadding="2" cellspacing="1">
             <tr>
@@ -54,13 +42,119 @@
             </tr>
         </table>
     </div>
+    
+    <div style="width:98%;margin:0 auto;clear:both;margin-top:2px;">
+        <table id="listgrid" class="easyui-datagrid" title="答案列表" style="margin:2px auto;" data-options="singleSelect:false,fitColumns:true,idField:'FItemId',rownumbers:true">
+            <thead>
+                <tr>
+					<th data-options="field:'FItemId',align:'center',checkbox:true">选择</th>
+                    <th data-options="field:'FItemContent',width:300,align:'left'">答案内容</th>
+                    <th data-options="field:'FItemFlagName',width:60,align:'center'">正确答案</th>
+					<th data-options="field:'FOperation',width:80,align:'center'">操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
     <script type="text/javascript">
+        function loadgriddata() {
+            var options = {
+                type: "POST",
+                data: { pid: "1" },
+                success: function (res) {
+                    var json = common.Util.StringToJson(res);
+                    loadgrid("listgrid", json);
+                }
+            };
+            common.Ajax("GetDataList", options);
+        }
+        
+        function del() {
+            var idlist = GetGridData("listgrid", "FItemId");
+	        if (!idlist) {
+	            $.messager.alert('警告', '请选择相关要删除的数据!', 'warning');
+	            return;
+	        }
+	        $.messager.confirm('确认', '您是否确定要删除选中的数据吗?', function (r) {
+	            if (!r) {
+	                return;
+	            }
+	            else {
+	                $.messager.progress();
+	                var options = {
+	                    type: "POST",
+	                    data: { pparm: idlist },
+	                    success: function (res) {
+	                        $.messager.progress('close');
+	                        var json = common.Util.StringToJson(res);
+	                        if (json.ErrorCode == common.Consts.SuccessCode) {
+	                            loadgriddata();
+	                        }
+	                        else {
+	                            $.messager.alert('警告', json.ErrorMessage, 'warning');
+	                            return;
+	                        }
+	                    }
+	                };
+	                common.Ajax("DeleteItem", options);
+	            }
+	        });
+        }
+
+        function edit(_itemid, _qid) {
+            window.parent.addtab("编辑题目答案", "OE000103005", "OEQuestionItemEdit.aspx?qid=" + _qid + "&itemid=" + _itemid );
+        }
+
+        function seterror(_itemid, _qid) {
+            var options = {
+                type: "POST",
+                data: { pquestionid: _qid, pitemid: _itemid },
+                success: function (res) {
+                    var json = common.Util.StringToJson(res);
+                    if (json.ErrorCode == common.Consts.SuccessCode) {
+                        loadgriddata();
+                    }
+                    else {
+                        $.messager.alert('警告', json.ErrorMessage, 'warning');
+                        return;
+                    }
+                }
+            };
+            common.Ajax("SetItemError", options);
+        }
+
+        function setright(_itemid, _qid) {
+            var options = {
+                type: "POST",
+                data: { pquestionid: _qid, pitemid: _itemid },
+                success: function (res) {
+                    var json = common.Util.StringToJson(res);
+                    if (json.ErrorCode == common.Consts.SuccessCode) {
+                        loadgriddata();
+                    }
+                    else {
+                        $.messager.alert('警告', json.ErrorMessage, 'warning');
+                        return;
+                    }
+                }
+            };
+            common.Ajax("SetItemRight", options);
+        }
+        
         $(function () {
             $('.btn').linkbutton({ plain: true });
             $('.btn1').linkbutton();
             formatgrid("listgrid", "loadgriddata", "hpagenum", "hpagesize", "hsortname", "hsortdirection");
+            $("#txtFItemContent").xheditor({ editorRoot: "../../Scripts", upLinkUrl: "../../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../../upload.aspx", upFlashExt: "swf", upMediaUrl: "../../upload.aspx", upMediaExt: "avi" });
+            var moduledata = common.Data.GetDatasource("itemlists");
+            $("#listgrid").datagrid('loadData', moduledata);
         });
+
+        function add() {
+            var _id = $("#hFQuestionId").val();
+            window.parent.addtab("新增题目答案", "OE000103004", "OEQuestionItemAdd.aspx?qid=" + _id );
+        }
     </script>
 </asp:Content>

@@ -33,6 +33,23 @@ namespace HQOnlineExam.ML
              }
          }
 
+         public string FOperation
+         {
+             get
+             {
+                 string rnt = "<a href='javascript:void(0)' onclick='edit(" + FItemId.ToString() + "," + FQuestionId.ToString() + ")'>编辑</a>";
+                 if (FItemFlag == "0")
+                 {
+                     rnt += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='setright(" + FItemId.ToString() + "," + FQuestionId.ToString() + ")'>正确答案</a>";
+                 }
+                 else
+                 {
+                     rnt += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='seterror(" + FItemId.ToString() + "," + FQuestionId.ToString() + ")'>错误答案</a>";
+                 }
+                 return rnt;
+             }
+         }
+
          public OEQuestionItem()
          {
 
