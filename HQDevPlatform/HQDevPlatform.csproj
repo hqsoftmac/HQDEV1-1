@@ -838,6 +838,8 @@
     <Content Include="OnlineExam\login.aspx" />
     <Content Include="OnlineExam\OEQuestion.aspx" />
     <Content Include="OnlineExam\OEQuestionAdd.aspx" />
+    <Content Include="OnlineExam\OEQuestionEdit.aspx" />
+    <Content Include="OnlineExam\OEQuestionItemSet.aspx" />
     <Content Include="OnlineExam\QuestionBank.aspx" />
     <Content Include="partymember\ClearIE.aspx" />
     <Content Include="partymember\default.aspx" />
@@ -1754,9 +1756,24 @@
     </Compile>
     <Compile Include="OnlineExam\OEQuestionAdd.aspx.cs">
       <DependentUpon>OEQuestionAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="OnlineExam\OEQuestionAdd.aspx.designer.cs">
       <DependentUpon>OEQuestionAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestionEdit.aspx.cs">
+      <DependentUpon>OEQuestionEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestionEdit.aspx.designer.cs">
+      <DependentUpon>OEQuestionEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestionItemSet.aspx.cs">
+      <DependentUpon>OEQuestionItemSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\OEQuestionItemSet.aspx.designer.cs">
+      <DependentUpon>OEQuestionItemSet.aspx</DependentUpon>
     </Compile>
     <Compile Include="OnlineExam\QuestionBank.aspx.cs">
       <DependentUpon>QuestionBank.aspx</DependentUpon>

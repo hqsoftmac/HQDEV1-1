@@ -9,6 +9,7 @@ using HQOnlineExam.Biz;
 using System.Collections.Specialized;
 using HQOnlineExam.ML;
 using HQLib.Util;
+using HQLib;
 
 namespace HQDevPlatform.OnlineExam
 {
@@ -21,6 +22,25 @@ namespace HQDevPlatform.OnlineExam
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void UpdateStatus()
+        {
+            string _id = Parameters["pid"];
+            string _flag = Parameters["pflag"];
+            OEQuestionBiz biz = new OEQuestionBiz();
+            ErrorEntity ErrInfo = new ErrorEntity();
+            biz.UpdateStatus(_id, _flag, out ErrInfo);
+            Response.Write(ErrInfo.ToJson());
+        }
+
+        public void DelData()
+        {
+            string idlist = Parameters["pparm"];
+            OEQuestionBiz biz = new OEQuestionBiz();
+            ErrorEntity ErrInfo = new ErrorEntity();
+            biz.Delete(idlist, out ErrInfo);
+            Response.Write(ErrInfo.ToJson());
         }
 
         public void GetGridData()
@@ -60,7 +80,7 @@ namespace HQDevPlatform.OnlineExam
             List<HQOnlineExam.ML.OEQuestion> lists = new List<HQOnlineExam.ML.OEQuestion>();
             OEQuestionBiz biz = new OEQuestionBiz();
             string _searchtext = _searchcontent;
-            string wheresql = "(FQBankId = " + _qbankid + ")";
+            string wheresql = "(FQBankId = " + _qbankid + ") and (FQuestionStatus <> '0') ";
             if (!string.IsNullOrEmpty(_tilte))
             {
                 wheresql += " and (FQuestionTilte like '%" + _tilte + "%') ";

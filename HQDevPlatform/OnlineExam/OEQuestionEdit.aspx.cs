@@ -14,33 +14,26 @@ using HQLib.User;
 
 namespace HQDevPlatform.OnlineExam
 {
-    public partial class OEQuestionAdd : PageBase
+    public partial class OEQuestionEdit : PageBase
     {
+        public HQOnlineExam.ML.OEQuestion item;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        public void GetContentClassTree()
-        {
-            OEContentClassTreeBiz biz = new OEContentClassTreeBiz();
-            Response.Write(biz.JsonSelect());
-        }
-
-        public void GetQuestionBank()
-        {
-            string _classid = Parameters["pclassid"];
-            OEContentClassBiz biz = new OEContentClassBiz();
-            string _idlist = "";
-            biz.GetChildrenIdList(_classid, ref _idlist);
-            OEQuestionBankBiz QBBiz = new OEQuestionBankBiz();
-            NameValueCollection where = new NameValueCollection();
-            where.Add("condition", "FContentClassId in (" + _idlist + ")");
-            NameValueCollection orderby = new NameValueCollection();
-            orderby.Add("FQBankCode", "asc");
-            List<OEQuestionBank> lists = new List<OEQuestionBank>();
-            lists = QBBiz.Select(where, orderby);
-            Response.Write(Utils.ConvertToJson(lists));
+            if (!Page.IsPostBack)
+            {
+                string _id = Parameters["qid"];
+                item = new HQOnlineExam.ML.OEQuestion();
+                OEQuestionBiz biz = new OEQuestionBiz();
+                item = biz.Select(_id);
+                List<OEQuestionBank> lists = new List<OEQuestionBank>();
+                OEQuestionBankBiz QBbiz = new OEQuestionBankBiz();
+                NameValueCollection where = new NameValueCollection();
+                where.Add("FContentClassId",item.FContentClassId.ToString());
+                NameValueCollection orderby = new NameValueCollection();
+                orderby.Add("FQBankCode","asc");
+                lists = QBbiz.Select(where, orderby);
+                AddDatasource("QBankList", lists);
+            }
         }
 
         public void SaveQuestion()
@@ -79,6 +72,28 @@ namespace HQDevPlatform.OnlineExam
                 biz.Update(item, out ErrInfo);
             }
             Response.Write(ErrInfo.ToJson());
+        }
+
+        public void GetContentClassTree()
+        {
+            OEContentClassTreeBiz biz = new OEContentClassTreeBiz();
+            Response.Write(biz.JsonSelect());
+        }
+
+        public void GetQuestionBank()
+        {
+            string _classid = Parameters["pclassid"];
+            OEContentClassBiz biz = new OEContentClassBiz();
+            string _idlist = "";
+            biz.GetChildrenIdList(_classid, ref _idlist);
+            OEQuestionBankBiz QBBiz = new OEQuestionBankBiz();
+            NameValueCollection where = new NameValueCollection();
+            where.Add("condition", "FContentClassId in (" + _idlist + ")");
+            NameValueCollection orderby = new NameValueCollection();
+            orderby.Add("FQBankCode", "asc");
+            List<OEQuestionBank> lists = new List<OEQuestionBank>();
+            lists = QBBiz.Select(where, orderby);
+            Response.Write(Utils.ConvertToJson(lists));
         }
     }
 }

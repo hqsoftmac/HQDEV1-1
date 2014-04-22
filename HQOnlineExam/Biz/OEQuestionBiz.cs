@@ -13,7 +13,22 @@ namespace HQOnlineExam.Biz
     //OEQuestion
     public partial class OEQuestionBiz
     {
-
+        public OEQuestion Select(string _id)
+        {
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FQuestionId", _id);
+            List<OEQuestion> lists = new List<OEQuestion>();
+            lists = Select(where);
+            if (lists.Count > 0)
+            {
+                return lists[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
         public List<OEQuestion> Select(NameValueCollection where)
         {
             OEQuestionDA da = new OEQuestionDA();
@@ -50,7 +65,31 @@ namespace HQOnlineExam.Biz
         public Int64 Insert(OEQuestion item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
-
+            if (item.FQBankId == 0)
+            {
+                ErrInfo = new ErrorEntity("OQ010001", "所属题库不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FQuestionTitle))
+            {
+                ErrInfo = new ErrorEntity("OQ010002", "题目标题不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FQuestionType))
+            {
+                ErrInfo = new ErrorEntity("OQ010003", "题目类型不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FQuestionDifficulty))
+            {
+                ErrInfo = new ErrorEntity("OQ010004", "题目难度不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FKeyWord))
+            {
+                ErrInfo = new ErrorEntity("OQ010005", "题目关键字不能为空!");
+                return -1;
+            }
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FQBankId", item.FQBankId.ToString());
             parameters.Add("FQuestionTitle", item.FQuestionTitle);
@@ -59,11 +98,18 @@ namespace HQOnlineExam.Biz
             parameters.Add("FKeyWord", item.FKeyWord);
             parameters.Add("FQuestionDesc", item.FQuestionDesc);
             parameters.Add("FQuestionAnalysis", item.FQuestionAnalysis);
-            parameters.Add("FQuestionStatus", item.FQuestionStatus);
-            parameters.Add("FQuestionDateTime", item.FQuestionDateTime.ToString());
             parameters.Add("AUserId", item.AUserId.ToString());
             parameters.Add("AUserName", item.AUserName);
             return Insert(parameters, out ErrInfo);
+        }
+
+        public int UpdateStatus(string _id, string _status,out ErrorEntity ErrInfo)
+        {
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FQuestionId", _id);
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("FQuestionStatus", _status);
+            return Update(parameters, where, out ErrInfo);
         }
 
         public int Update(NameValueCollection parameters, NameValueCollection where, out ErrorEntity ErrInfo)
@@ -85,7 +131,31 @@ namespace HQOnlineExam.Biz
         public Int32 Update(OEQuestion item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
-
+            if (item.FQBankId == 0)
+            {
+                ErrInfo = new ErrorEntity("OQ010001", "所属题库不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FQuestionTitle))
+            {
+                ErrInfo = new ErrorEntity("OQ010002", "题目标题不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FQuestionType))
+            {
+                ErrInfo = new ErrorEntity("OQ010003", "题目类型不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FQuestionDifficulty))
+            {
+                ErrInfo = new ErrorEntity("OQ010004", "题目难度不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FKeyWord))
+            {
+                ErrInfo = new ErrorEntity("OQ010005", "题目关键字不能为空!");
+                return -1;
+            }
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FQBankId", item.FQBankId.ToString());
             parameters.Add("FQuestionTitle", item.FQuestionTitle);
@@ -94,8 +164,7 @@ namespace HQOnlineExam.Biz
             parameters.Add("FKeyWord", item.FKeyWord);
             parameters.Add("FQuestionDesc", item.FQuestionDesc);
             parameters.Add("FQuestionAnalysis", item.FQuestionAnalysis);
-            parameters.Add("FQuestionStatus", item.FQuestionStatus);
-            parameters.Add("FQuestionDateTime", item.FQuestionDateTime.ToString());
+            parameters.Add("FQuestionDateTime", DateTime.Today.ToString());
             parameters.Add("AUserId", item.AUserId.ToString());
             parameters.Add("AUserName", item.AUserName);
             NameValueCollection where = new NameValueCollection();
@@ -113,16 +182,9 @@ namespace HQOnlineExam.Biz
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {
             OEQuestionDA da = new OEQuestionDA();
-            int result = da.Delete(where);
-            if (result > 0)
-            {
-                ErrInfo = new ErrorEntity(RespCode.Success);
-            }
-            else
-            {
-                ErrInfo = new ErrorEntity(RespCode.SysError);
-            }
-            return result;
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("FQuestionStatus", "0");
+            return Update(parameters, where, out ErrInfo);
         }
 
     }

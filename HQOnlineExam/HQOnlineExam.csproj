@@ -49,7 +49,7 @@
     <Compile Include="Biz\OECombineTypeBiz.cs" />
     <Compile Include="Biz\OEContentClassBiz.cs" />
     <Compile Include="Biz\OEContentClassTreeBiz.cs" />
-    <Compile Include="Biz\OEExamItemBiz.cs" />
+    <Compile Include="Biz\OEQuestionItemBiz.cs" />
     <Compile Include="Biz\OEExamPaperBiz.cs" />
     <Compile Include="Biz\OEPaperDifficultyBiz.cs" />
     <Compile Include="Biz\OEQuestionBankBiz.cs" />
@@ -59,7 +59,7 @@
     <Compile Include="DA\OECombineBankDA.cs" />
     <Compile Include="DA\OECombineTypeDA.cs" />
     <Compile Include="DA\OEContentClassDA.cs" />
-    <Compile Include="DA\OEExamItemDA.cs" />
+    <Compile Include="DA\OEQuestionItemDA.cs" />
     <Compile Include="DA\OEExamPaperDA.cs" />
     <Compile Include="DA\OEPaperDifficultyDA.cs" />
     <Compile Include="DA\OEQuestionBankDA.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="ML\OECombineType.cs" />
     <Compile Include="ML\OEContentClass.cs" />
     <Compile Include="ML\OEContentClassTree.cs" />
-    <Compile Include="ML\OEExamItem.cs" />
+    <Compile Include="ML\OEQuestionItem.cs" />
     <Compile Include="ML\OEExamPaper.cs" />
     <Compile Include="ML\OEPaperDifficulty.cs" />
     <Compile Include="ML\OEQuestion.cs" />

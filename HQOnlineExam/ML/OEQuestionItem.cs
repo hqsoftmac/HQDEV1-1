@@ -8,9 +8,9 @@ using HQLib.Util;
 namespace HQOnlineExam.ML
 {
      [Serializable]
-    public class OEExamItem :IDatasource
+    public class OEQuestionItem :IDatasource
     {
-         public Int64 FPaperId { get; set; }
+         public Int64 FQuestionId { get; set; }
 
          public Int32 FItemId { get; set; }
 
@@ -18,7 +18,22 @@ namespace HQOnlineExam.ML
 
          public string FItemFlag{get; set;}
 
-         public OEExamItem()
+         public string FItemFlagName
+         {
+             get
+             {
+                 if (FItemFlag == "1")
+                 {
+                     return "正确答案";
+                 }
+                 else
+                 {
+                     return "错误答案";
+                 }
+             }
+         }
+
+         public OEQuestionItem()
          {
 
          }

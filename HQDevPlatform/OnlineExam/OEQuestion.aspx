@@ -44,12 +44,12 @@
                 <thead>
                     <tr>
 						<th data-options="field:'FQuestionId',align:'center',checkbox:true">选择</th>
-                        <th data-options="field:'FQuestionTitle',width:120,align:'center'">题目标题</th>
+                        <th data-options="field:'FQuestionDisplayTitle',width:120,align:'left'">题目标题</th>
                         <th data-options="field:'FQuestionTypeName',width:60,align:'center'">题目类型</th>
                         <th data-options="field:'FQuestionDifficultyName',width:60,align:'center'">题目难易等级</th>
 						<th data-options="field:'FQuestionDateTimeStr',width:80,align:'center'">题目创建时间</th>
 						<th data-options="field:'AUserName',width:60,align:'center'">题目创建人姓名</th>
-						<th data-options="field:'FQuestionStatus',width:60,align:'center'">题目状态</th>
+						<th data-options="field:'FQuestionStatusName',width:60,align:'center'">题目状态</th>
 						<th data-options="field:'FOperation',width:80,align:'center'">操作</th>
                     </tr>
                 </thead>
@@ -128,6 +128,34 @@
 
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
 	<script type="text/javascript">
+	    function setitem(id) {
+	        window.parent.addtab("设置题目答案", "OE000103003", "OEQuestionItemSet.aspx?qid=" + id);
+	    }
+
+	    function status(id, flag) {
+	        $.messager.progress();
+            var options = {
+	            type: "POST",
+	            data: { pid: id, pflag: flag },
+	            success: function (res) {
+	                $.messager.progress('close');
+	                var json = common.Util.StringToJson(res);
+	                if (json.ErrorCode == common.Consts.SuccessCode) {
+	                    loadgriddata();
+	                }
+	                else {
+	                    $.messager.alert('警告', json.ErrorMessage, 'warning');
+	                    return;
+	                }
+	            }
+	        };
+	        common.Ajax("UpdateStatus", options);
+	    }
+
+	    function edit(id) {
+	        window.parent.addtab("编辑题目", "OE000103002", "OEQuestionEdit.aspx?qid=" + id );
+	    }
+
 	    function finddata() {
 	        $("#txtquestiontitle").val("");
 	        $("#selfiltertype").val("");

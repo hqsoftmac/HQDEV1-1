@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebContent.Master" ValidateRequest="false"  AutoEventWireup="true" CodeBehind="OEQuestionAdd.aspx.cs" Inherits="HQDevPlatform.OnlineExam.OEQuestionAdd" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebContent.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="OEQuestionEdit.aspx.cs" Inherits="HQDevPlatform.OnlineExam.OEQuestionEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css" />
     <link href="../../themes/icon.css" rel="stylesheet" type="text/css" />
@@ -14,7 +14,7 @@
     <script src="../../Scripts/xheditor-1.1.13-zh-cn.min.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHPageName" runat="server">
-    新增题目
+    编辑题目
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPHPageTool" runat="server">
     <a href="javascript:void(0)" class="btn" id="btnadd" iconCls="icon-add" onclick="savequestion()">保存</a>
@@ -29,8 +29,8 @@
                         内容类别
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="hidden" id="hFContentClassId" value="0" />
-                        <label id="lblclassname" style="min-width:200px;border:1px solid #000;padding:2px 3px;">===请选择内容类别===</label>
+                        <input type="hidden" id="hFContentClassId" value="<%=item.FContentClassId %>" />
+                        <label id="lblclassname" style="min-width:200px;border:1px solid #000;padding:2px 3px;">[<%=item.FContentClassCode%>]<%=item.FContentClassName %></label>
                         <a href="javascript:void(0)" class="btn" id="A2" iconCls="icon-search" onclick="searchcontentclass()"></a>
                     </td>
                 </tr>
@@ -49,8 +49,8 @@
                         题目标题
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="hidden" id="hFQuestionId" value="0" />
-                        <textarea id="txtFQuestionTitle" style="width:100%;height:320px;"></textarea>
+                        <input type="hidden" id="hFQuestionId" value="<%=item.FQuestionId %>" />
+                        <textarea id="txtFQuestionTitle" style="width:100%;height:320px;"><%=item.FQuestionTitle%></textarea>
    			        </td>
  		        </tr>
                 <tr>
@@ -86,7 +86,7 @@
                         题目关键字
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="text" id="txtFKeyWord" value="" style="width:98%;" />
+                        <input type="text" id="txtFKeyWord" value="<%=item.FKeyWord %>" style="width:98%;" />
    			        </td>
  		        </tr>
             </table>
@@ -98,7 +98,7 @@
                         考察点说明
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <textarea id="txtFQuestionDesc" style="width:100%;height:80px;"></textarea>
+                        <textarea id="txtFQuestionDesc" style="width:100%;height:80px;"><%=item.FQuestionDesc %></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -106,7 +106,7 @@
                         题目解析
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <textarea id="txtAnalysis" style="width:100%;height:260px;"></textarea>
+                        <textarea id="txtAnalysis" style="width:100%;height:260px;"><%=item.FQuestionAnalysis %></textarea>
    			        </td>
  		        </tr>
             </table>
@@ -182,7 +182,22 @@
             };
             common.Ajax("SaveQuestion", options);
         }
-        
+
+        $(function () {
+            $('.btn').linkbutton({ plain: true });
+            $('.btn1').linkbutton();
+            $("#txtFQuestionTitle").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
+            $("#txtFQuestionDesc").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
+            $("#txtAnalysis").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
+            var qlist = common.Data.GetDatasource("QBankList");
+            $("#selquestionbank").empty();
+            $("#selquestionbank").append("<option value=''>===请选择题库===</option>");
+            common.DropDownList.Load("selquestionbank", qlist, "FDisplayQBankName", "FQBankId");
+            $("#selquestionbank").val("<%=item.FQBankId %>");
+            $("#selFQuestionType").val("<%=item.FQuestionType %>");
+            $("#selFQuestionDifficulty").val("<%=item.FQuestionDifficulty %>");
+        });
+
         function loadquestionbank() {
             var _classid = $("#hFContentClassId").val();
             var options = {
@@ -193,13 +208,14 @@
                     $("#selquestionbank").empty();
                     $("#selquestionbank").append("<option value=''>===请选择题库===</option>");
                     common.DropDownList.Load("selquestionbank", json, "FDisplayQBankName", "FQBankId");
+
                 }
             };
             common.Ajax("GetQuestionBank", options);
         }
-        
+
         function nullrnt() {
-            
+
         }
 
         function closewin1() {
@@ -247,14 +263,5 @@
             };
             common.Ajax("GetContentClassTree", options);
         }
-        
-        $(function () {
-            $('.btn').linkbutton({ plain: true });
-            $('.btn1').linkbutton();
-            $("#txtFQuestionTitle").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
-            $("#txtFQuestionDesc").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
-            $("#txtAnalysis").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
-        });
-
     </script>
 </asp:Content>
