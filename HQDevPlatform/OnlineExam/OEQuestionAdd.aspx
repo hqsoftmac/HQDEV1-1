@@ -119,6 +119,18 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
     <script type="text/javascript">
+        function initwin() {
+            $("#hFContentClassId").val();
+            $("#lblclassname").html("===请选择内容类别===");
+            $("#selquestionbank").val("");
+            $("#hFQuestionId").val("");
+            $("#txtFQuestionTitle").val("");
+            $("#selFQuestionType").val("");
+            $("#selFQuestionDifficulty").val("");
+            $("#txtFKeyWord").val("");
+            $("#txtAnalysis").val("");
+        }
+        
         function savequestion() {
             var _contentclassid = $("#hFContentClassId").val();
             var _questionbank = $("#selquestionbank").val();
@@ -172,6 +184,7 @@
                     if (json.ErrorCode == common.Consts.SuccessCode) {
                         $.messager.progress('close');
                         $.messager.alert("提示", "保存成功!", "info");
+                        initwin();
                     }
                     else {
                         $.messager.progress('close');
@@ -247,13 +260,14 @@
             };
             common.Ajax("GetContentClassTree", options);
         }
-        
+
         $(function () {
             $('.btn').linkbutton({ plain: true });
             $('.btn1').linkbutton();
             $("#txtFQuestionTitle").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
             $("#txtFQuestionDesc").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
             $("#txtAnalysis").xheditor({ upLinkUrl: "../upload.aspx", upLinkExt: "zip,rar,txt,doc,xls,docx,xlsx,ppt,pptx,rft", upImgUrl: "../upload.aspx", upImgExt: "jpg,jpeg,gif,png", upFlashUrl: "../upload.aspx", upFlashExt: "swf", upMediaUrl: "../upload.aspx", upMediaExt: "avi" });
+            initwin();
         });
 
     </script>

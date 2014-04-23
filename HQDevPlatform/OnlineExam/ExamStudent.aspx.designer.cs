@@ -10,6 +10,6 @@
 namespace HQDevPlatform.OnlineExam {
     
     
-    public partial class OEQuestionItemEdit {
+    public partial class ExamStudent {
     }
 }

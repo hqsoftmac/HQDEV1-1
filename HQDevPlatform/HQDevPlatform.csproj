@@ -835,6 +835,7 @@
     <Content Include="OnlineExam\ClearIE.aspx" />
     <Content Include="OnlineExam\ContentClass.aspx" />
     <Content Include="OnlineExam\default.aspx" />
+    <Content Include="OnlineExam\ExamStudent.aspx" />
     <Content Include="OnlineExam\login.aspx" />
     <Content Include="OnlineExam\OEQuestion.aspx" />
     <Content Include="OnlineExam\OEQuestionAdd.aspx" />
@@ -1431,6 +1432,7 @@
     <Content Include="themes\metro\tree.css" />
     <Content Include="themes\metro\validatebox.css" />
     <Content Include="themes\metro\window.css" />
+    <Content Include="upload.aspx" />
     <Content Include="UploadFile\03a4ed057b1e4516873d848b7504ae7c.jpg" />
     <Content Include="UploadFile\057baa872f754bcd8cd00be65b5089e0.jpg" />
     <Content Include="UploadFile\15224a207a544b14b7967b8a3c23222b.jpg" />
@@ -1742,6 +1744,13 @@
     </Compile>
     <Compile Include="OnlineExam\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\ExamStudent.aspx.cs">
+      <DependentUpon>ExamStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\ExamStudent.aspx.designer.cs">
+      <DependentUpon>ExamStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="OnlineExam\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

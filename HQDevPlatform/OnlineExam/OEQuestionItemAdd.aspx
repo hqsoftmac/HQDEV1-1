@@ -52,16 +52,20 @@
         function closepage() {
             var _id = $("#hquestionid").val();
             window.parent.refreshtab('设置题目答案', 'OE000103003', 'OEQuestionItemSet.aspx?qid=' + _id);
-            //window.parent.closecurtab();
+            window.parent.closecurtab();
         }
 
         function save() {
             var _itemcontent = $("#txtFItemContent").val();
             var _itemflag = '0';
-            alert($("#cbxFItemFlag").attr("checked"));
             if ($("#cbxFItemFlag").attr("checked") == 'checked') {
                 _itemflag = '1';
             }
+            if (!_itemcontent) {
+                $.messager.alert("警告", "答案内容不能为空!", "warning");
+                return;
+            }
+            $.messager.progress();
             var options = {
                 type: "POST",
                 data: { pitemcontent: _itemcontent, pitemflag: _itemflag },
@@ -70,7 +74,10 @@
                     if (json.ErrorCode == common.Consts.SuccessCode) {
                         $.messager.progress('close');
                         $.messager.alert("提示", "保存成功!", "info");
+                        $("#txtFItemContent").val("");
+                        $("#cbxFItemFlag").attr("checked", false);
                         closepage();
+
                     }
                     else {
                         $.messager.progress('close');

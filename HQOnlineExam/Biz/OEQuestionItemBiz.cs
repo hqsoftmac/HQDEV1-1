@@ -21,6 +21,24 @@ namespace HQOnlineExam.Biz
             orderby.Add("FItemId", "asc");
             return Select(where, orderby);
         }
+
+        public OEQuestionItem Select(string _qid, string _itemid)
+        {
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FQuestionId", _qid);
+            where.Add("FItemId", _itemid);
+            List<OEQuestionItem> lists = new List<OEQuestionItem>();
+            lists = Select(where);
+            if (lists.Count > 0)
+            {
+                return lists[0];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         
         public List<OEQuestionItem> Select(NameValueCollection where)
         {
@@ -199,10 +217,26 @@ namespace HQOnlineExam.Biz
         public Int32 Update(OEQuestionItem item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
-
+            if (item.FQuestionId == 0)
+            {
+                ErrInfo = new ErrorEntity("QI010001", "归属题目ID不能为空!");
+                return -1;
+            }
+            if (item.FItemId == 0)
+            {
+                ErrInfo = new ErrorEntity("QI010001", "归属题目ID不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FItemContent))
+            {
+                ErrInfo = new ErrorEntity("QI010002", "题目答案内容不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FItemFlag))
+            {
+                item.FItemFlag = "0";
+            }
             NameValueCollection parameters = new NameValueCollection();
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
-            parameters.Add("FItemId", item.FItemId.ToString());
             parameters.Add("FItemContent", item.FItemContent);
             parameters.Add("FItemFlag", item.FItemFlag);
             NameValueCollection where = new NameValueCollection();
