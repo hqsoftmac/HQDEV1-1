@@ -18,7 +18,7 @@
     <div style="width:100%;margin:0 auto;">
 	<div style="height:24px;clear:both;margin-top:0;padding:0;">
 		<div style="float:left;margin-left:10px;margin-top:3px;">
-            <label for="txtsearch">过滤</label>
+            <label for="txtsearch">注册学员过滤</label>
         </div>
         <div style="float:left;margin-left:10px;">
                 <input type="text" id="txtsearch" value="" style="width:150px;" />
@@ -44,11 +44,10 @@
             </table>
         </div>
     </div>
-    <input type="hidden" id="hsortname" value="FStudentId" />
+    <input type="hidden" id="hsortname" value="FStudentName" />
     <input type="hidden" id="hsortdirection" value="asc" />
     <input type="hidden" id="hpagenum" value="1" />
     <input type="hidden" id="hpagesize" value="10" />
-    <input type="hidden" id="hparentid" value="0" />
     
     <div id="addwin" iconCls="icon-save" title="学员注册表管理" style="text-align:center;display:none;">  
         <table style="width: 470px;margin:10px auto;" bgcolor="#999999" border="0" cellpadding="2" cellspacing="1">            
@@ -57,7 +56,7 @@
                 学员姓名
                 </td>
                 <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                	<input type="hidden" id="hFStudentId" value="0" />
+                	<input type="hidden" id="hFStudentId" value="" />
                     <input type="text" id="txtFStudentName" value="0" />
    				</td>
  			</tr>
@@ -85,14 +84,6 @@
                 <input type="text" id="txtFMobile" value="0" />
    				</td>
  			</tr>
-            <tr>
-                <td align="right" style="width: 120px; background-color: #e1f5fc; height: 25px;" >
-               密码
-                </td>
-                <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                <input type="text" id="txtFStudentPSW" value="0" />
-   				</td>
- 			</tr>
 		</table>
 		<div style="margin:20px auto;">
             <a href="#" class="btn1" id="btnsave" iconCls="icon-save" onclick="save()">保存</a>&nbsp;&nbsp;
@@ -106,19 +97,39 @@
             $("#addwin").window('close');
         }
 
+        function status(_id, _status) {
+            $.messager.progress();
+            var options = {
+                type: "POST",
+                data: { pid: _id, pstatus: _status },
+                success: function (res) {
+                    var json = common.Util.StringToJson(res);
+                    if (json.ErrorCode == common.Consts.SuccessCode) {
+                        $.messager.progress('close');
+                        loadgriddata();
+                    }
+                    else {
+                        $.messager.progress('close');
+                        $.messager.alert('警告', json.ErrorMessage, 'warning');
+                        return;
+                    }
+                }
+            };
+            common.Ajax("UpdateStatus", options);
+        }
+
         function initwin() {
-            $("#hFStudentId").val("0");
+            $("#hFStudentId").val("");
             //other init control fill there
             $("#txtFStudentName").val("");
             $("#txtFStudentIDNumber").val("");
             $("#txtFEmail").val("");
             $("#txtFMobile").val("");
-            $("#txtFStudentPSW").val("");
         }
 
         function add() {
             initwin();
-            openwin("addwin", 500, 400, true, "loadgriddata");
+            openwin("addwin", 500, 350, true, "loadgriddata");
         }
 
         function edit(id) {
@@ -134,8 +145,7 @@
                         $("#txtFStudentIDNumber").val(json.FStudentIDNumber);
                         $("#txtFEmail").val(json.FEmail);
                         $("#txtFMobile").val(json.FMobile);
-                        $("#txtFStudentPSW").val(json.FStudentPSW);
-                        openwin("addwin", 500, 400, true, "loadgriddata");
+                        openwin("addwin", 500, 350, true, "loadgriddata");
                     }
                     else {
                         $.messager.alert("警告", "无法获取数据,请刷新后重试!", 'warning');
@@ -152,7 +162,6 @@
             var _FStudentIDNumber = $("#txtFStudentIDNumber").val();
             var _FEmail = $("#txtFEmail").val();
             var _FMobile = $("#txtFMobile").val();
-            var _FStudentPSW = $("#txtFStudentPSW").val();
 
             //judge data fill here
             if (!_FStudentName) {
@@ -163,18 +172,6 @@
                 $.messager.alert("警告", "身份证号码不能为空!", "warning");
                 return;
             }
-            if (!_FEmail) {
-                $.messager.alert("警告", "EMAIL不能为空!", "warning");
-                return;
-            }
-            if (!_FMobile) {
-                $.messager.alert("警告", "手机号码不能为空!", "warning");
-                return;
-            }
-            if (!_FStudentPSW) {
-                $.messager.alert("警告", "密码不能为空!", "warning");
-                return;
-            }
 
             var options = {
                 type: "POST",
@@ -183,9 +180,7 @@
                     pFStudentName: _FStudentName,
                     pFStudentIDNumber: _FStudentIDNumber,
                     pFEmail: _FEmail,
-                    pFMobile: _FMobile,
-                    pFStudentPSW: _FStudentPSW
-
+                    pFMobile: _FMobile
                 },
                 success: function (res) {
                     var json = common.Util.StringToJson(res);
@@ -201,6 +196,33 @@
                 }
             };
             common.Ajax("SaveItem", options);
+        }
+
+        function resetpsw(_id) {
+            $.messager.confirm('确认', '您是否确定要重置该学员的口令吗?', function (r) {
+                if (!r) {
+                    return;
+                }
+                else {
+                    $.messager.progress();
+                    var options = {
+                        type: "POST",
+                        data: { pid: _id },
+                        success: function (res) {
+                            $.messager.progress('close');
+                            var json = common.Util.StringToJson(res);
+                            if (json.ErrorCode == common.Consts.SuccessCode) {
+                                loadgriddata();
+                            }
+                            else {
+                                $.messager.alert('警告', json.ErrorMessage, 'warning');
+                                return;
+                            }
+                        }
+                    };
+                    common.Ajax("ResetPassWord", options);
+                }
+            });
         }
 
         function del() {
@@ -239,7 +261,7 @@
             $('.btn').linkbutton({ plain: true });
             $('.btn1').linkbutton();
             formatgrid("listgrid", "loadgriddata", "hpagenum", "hpagesize", "hsortname", "hsortdirection");
-            //loadgriddata();
+            loadgriddata();
         });
 
         function loadgriddata() {

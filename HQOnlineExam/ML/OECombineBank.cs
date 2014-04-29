@@ -14,7 +14,7 @@ namespace HQOnlineExam.ML
 
       public Int64 FQBankId { get; set; }
 
-      public Int32 FQBnakRate { get; set; }
+      public Decimal FQBnakRate { get; set; }
 
       public OECombineBank()
       {

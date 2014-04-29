@@ -28,7 +28,13 @@ namespace HQOnlineExam.Biz
                 return null;
             }
         }
-        
+
+        public Int64 SelectCount(NameValueCollection where)
+        {
+            OEQuestionDA da = new OEQuestionDA();
+            return da.Select(where).Rows.Count;
+        }
+
         public List<OEQuestion> Select(NameValueCollection where)
         {
             OEQuestionDA da = new OEQuestionDA();

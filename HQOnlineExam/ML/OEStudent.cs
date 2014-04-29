@@ -11,7 +11,7 @@ namespace HQOnlineExam.ML
     
     public class OEStudent:IDatasource
     {
-        public string FStudentId { get; set; }
+        public Guid FStudentId { get; set; }
 
         public string FStudentName { get; set; }
 
@@ -23,11 +23,26 @@ namespace HQOnlineExam.ML
 
         public DateTime FRegTime { get; set; }
 
+        public string FRegTimeStr
+        {
+            get
+            {
+                if (FRegTime == new DateTime())
+                {
+                    return "";
+                }
+                else
+                {
+                    return FRegTime.ToString();
+                }
+            }
+        }
+
         public string FStudentPSW { get; set; }
 
         public string FStatus { get; set; }
 
-        public string FStatusname
+        public string FStatusName
         {
             get
             {
@@ -45,6 +60,23 @@ namespace HQOnlineExam.ML
             }
         }
 
+        public string FOperation
+        {
+            get
+            {
+                string rnt = "<a href='javascript:void(0)' onclick='edit(\"" + FStudentId.ToString() + "\")'>编辑</a>";
+                rnt += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='resetpsw(\"" + FStudentId.ToString() + "\")'>重置口令</a>";
+                if (FStatus == "1")
+                {
+                    rnt += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='status(\"" + FStudentId.ToString() + "\",\"2\")'>停用</a>";
+                }
+                else
+                {
+                    rnt += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='status(\"" + FStudentId.ToString() + "\",\"1\")'>启用</a>";
+                }
+                return rnt;
+            }
+        }
 
         public OEStudent()
         {

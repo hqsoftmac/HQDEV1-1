@@ -14,6 +14,22 @@ namespace HQOnlineExam.Biz
     public partial class OEExamPaperBiz
     {
 
+        public OEExamPaper Select(string id)
+        {
+            List<OEExamPaper> lists = new List<OEExamPaper>();
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FPaperId", id);
+            lists = Select(where);
+            if (lists.Count > 0)
+            {
+                return lists[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
         public List<OEExamPaper> Select(NameValueCollection where)
         {
             OEExamPaperDA da = new OEExamPaperDA();
@@ -50,7 +66,31 @@ namespace HQOnlineExam.Biz
         public Int64 Insert(OEExamPaper item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
-
+            if (item.FContentClassId == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010001", "试卷所属内容类别不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FPaperName))
+            {
+                ErrInfo = new ErrorEntity("EP010002", "试卷名称不能为空!");
+                return -1;
+            }
+            if (item.FPaperTotal == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010003", "试卷总分不能为空或者等于零!");
+                return -1;
+            }
+            if (item.FPassScore == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010004", "试卷通过分数设定不能为空或者等于零");
+                return -1;
+            }
+            if (item.FExamTime == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010005", "考试时间不能为空或者等于零!");
+                return -1;
+            }
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FContentClassId", item.FContentClassId.ToString());
             parameters.Add("FPaperName", item.FPaperName);
@@ -60,8 +100,10 @@ namespace HQOnlineExam.Biz
             parameters.Add("FPassScore", item.FPassScore.ToString());
             parameters.Add("FPaperContent", item.FPaperContent);
             parameters.Add("AUserId", item.AUserId.ToString());
-            parameters.Add("FPaperTime", item.FPaperTime.ToString());
             parameters.Add("FPaperStatus", item.FPaperStatus);
+            parameters.Add("FExamTime", item.FExamTime.ToString());
+            parameters.Add("FExamType", item.FExamType);
+            parameters.Add("FExamAgain", item.FExamAgain);
             return Insert(parameters, out ErrInfo);
         }
 
@@ -84,7 +126,31 @@ namespace HQOnlineExam.Biz
         public Int32 Update(OEExamPaper item, out ErrorEntity ErrInfo)
         {
             //Error Judge Define
-
+            if (item.FContentClassId == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010001", "试卷所属内容类别不能为空!");
+                return -1;
+            }
+            if (string.IsNullOrEmpty(item.FPaperName))
+            {
+                ErrInfo = new ErrorEntity("EP010002", "试卷名称不能为空!");
+                return -1;
+            }
+            if (item.FPaperTotal == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010003", "试卷总分不能为空或者等于零!");
+                return -1;
+            }
+            if (item.FPassScore == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010004", "试卷通过分数设定不能为空或者等于零");
+                return -1;
+            }
+            if (item.FExamTime == 0)
+            {
+                ErrInfo = new ErrorEntity("EP010005", "考试时间不能为空或者等于零!");
+                return -1;
+            }
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FContentClassId", item.FContentClassId.ToString());
             parameters.Add("FPaperName", item.FPaperName);
@@ -96,8 +162,11 @@ namespace HQOnlineExam.Biz
             parameters.Add("AUserId", item.AUserId.ToString());
             parameters.Add("FPaperTime", item.FPaperTime.ToString());
             parameters.Add("FPaperStatus", item.FPaperStatus);
+            parameters.Add("FExamTime", item.FExamTime.ToString());
+            parameters.Add("FExamType", item.FExamType);
+            parameters.Add("FExamAgain", item.FExamAgain);
             NameValueCollection where = new NameValueCollection();
-            where.Add("FPaperd", item.FPaperd.ToString());
+            where.Add("FPaperId", item.FPaperId.ToString());
             return Update(parameters, where, out ErrInfo);
         }
 

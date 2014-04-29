@@ -21,7 +21,7 @@
     <a href="javascript:void(0)" class="btn" id="btndel" iconCls="icon-remove" onclick="del()">删除</a>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPHContent" runat="server">
-    <div style="width:98%;margin:5px auto;clear:both;">
+    <%--<div style="width:98%;margin:5px auto;clear:both;">
         <table style="width:100%;margin:0px auto;" bgcolor="#999999" border="0" cellpadding="2" cellspacing="1">
             <tr>
                 <td align="right" style="width: 100px; background-color: #e1f5fc; height: 25px;" >
@@ -41,14 +41,14 @@
                 </td>
             </tr>
         </table>
-    </div>
+    </div>--%>
     
     <div style="width:98%;margin:0 auto;clear:both;margin-top:2px;">
         <table id="listgrid" class="easyui-datagrid" title="答案列表" style="margin:2px auto;" data-options="singleSelect:false,fitColumns:true,idField:'FItemId',rownumbers:true">
             <thead>
                 <tr>
 					<th data-options="field:'FItemId',align:'center',checkbox:true">选择</th>
-                    <th data-options="field:'FItemContent',width:300,align:'left'">答案内容</th>
+                    <th data-options="field:'FItemDisplayContent',width:300,align:'left'">答案内容</th>
                     <th data-options="field:'FItemFlagName',width:60,align:'center'">正确答案</th>
 					<th data-options="field:'FOperation',width:80,align:'center'">操作</th>
                 </tr>

@@ -835,8 +835,10 @@
     <Content Include="OnlineExam\ClearIE.aspx" />
     <Content Include="OnlineExam\ContentClass.aspx" />
     <Content Include="OnlineExam\default.aspx" />
+    <Content Include="OnlineExam\ExamManage.aspx" />
     <Content Include="OnlineExam\ExamStudent.aspx" />
     <Content Include="OnlineExam\login.aspx" />
+    <Content Include="OnlineExam\OEExamPaperAdd.aspx" />
     <Content Include="OnlineExam\OEQuestion.aspx" />
     <Content Include="OnlineExam\OEQuestionAdd.aspx" />
     <Content Include="OnlineExam\OEQuestionEdit.aspx" />
@@ -1745,6 +1747,13 @@
     <Compile Include="OnlineExam\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OnlineExam\ExamManage.aspx.cs">
+      <DependentUpon>ExamManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\ExamManage.aspx.designer.cs">
+      <DependentUpon>ExamManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OnlineExam\ExamStudent.aspx.cs">
       <DependentUpon>ExamStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1758,6 +1767,13 @@
     </Compile>
     <Compile Include="OnlineExam\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam\OEExamPaperAdd.aspx.cs">
+      <DependentUpon>OEExamPaperAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam\OEExamPaperAdd.aspx.designer.cs">
+      <DependentUpon>OEExamPaperAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="OnlineExam\OEQuestion.aspx.cs">
       <DependentUpon>OEQuestion.aspx</DependentUpon>

@@ -10,7 +10,7 @@ namespace HQOnlineExam.DA
     {
         public OEExamPaperDA()
         {
-            this._selecttable = "t_oe_exampaper";
+            this._selecttable = "v_oe_exampaper";
             this._inserttable = "t_oe_exampaper";
             this._updatetable = "t_oe_exampaper";
             this._deletetable = "t_oe_exampaper";

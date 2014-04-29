@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using HQLib.Interface;
 using HQLib.Util;
+using HQLib.Common;
 
 namespace HQOnlineExam.ML
 {
@@ -30,6 +31,19 @@ namespace HQOnlineExam.ML
                  {
                      return "错误答案";
                  }
+             }
+         }
+
+         public string FItemDisplayContent
+         {
+             get
+             {
+                 string rnt = PublicMethod.NoHTML(FItemContent);
+                 if (rnt.Length > 30)
+                 {
+                     rnt = rnt.Substring(0, 30) + "...";
+                 }
+                 return rnt;
              }
          }
 
