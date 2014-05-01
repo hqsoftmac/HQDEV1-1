@@ -173,14 +173,16 @@ namespace HQOnlineExam.Biz
         public int Delete(string idlist, out ErrorEntity ErrInfo)
         {
             NameValueCollection where = new NameValueCollection();
-            where.Add("condition", "FPaperd in (" + idlist + ")");
+            where.Add("condition", "FPaperId in (" + idlist + ")");
             return Delete(where, out ErrInfo);
         }
 
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {
             OEExamPaperDA da = new OEExamPaperDA();
-            int result = da.Delete(where);
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("FPaperStatus", "0");
+            int result = da.Update(parameters, where);
             if (result > 0)
             {
                 ErrInfo = new ErrorEntity(RespCode.Success);

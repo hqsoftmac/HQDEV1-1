@@ -63,7 +63,7 @@
                         试卷模式：
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <select id="selexamtype">
+                        <select id="selexamtype" onchange="setmodel()">
                             <option value="0">离线模式</option>
                             <option value="1" selected>在线模式</option>
                         </select>
@@ -161,26 +161,29 @@
                         </table>
                     </td>
                 </tr>
-                <tr>
-                    <td align="right" style="width: 120px; background-color: #e1f5fc; height: 25px;" >
-                        难度设定
-                    </td>
-                    <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <table id="difficultygrid" class="easyui-datagrid" style="margin:10px auto;" data-options="singleSelect:true,fitColumns:true,idField:'FDifficulty',rownumbers:true,toolbar: [{ text: '新增', iconCls: 'icon-add', handler: function () { adddifficulty(); } }, { text: '删除', iconCls: 'icon-cancel', handler: function () { deldifficulty(); } }]">
-                            <thead>
-                                <tr>
-						            <th data-options="field:'FDifficulty',align:'center',checkbox:true">选择</th>
-                                    <th data-options="field:'FDifficultyName',width:200,align:'left'">难度等级</th>
-                                    <th data-options="field:'FRate',width:60,align:'center'">抽题占比(%)</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </td>
-                </tr>
             </table>
             <div style="margin:5px auto;width:100%;text-align:center;">
                 <a href="#" class="btn1" id="A1" iconCls="icon-undo" onclick="next(0)">上一步</a>&nbsp;&nbsp;
                 <a href="#" class="btn1" id="A2" iconCls="icon-save" onclick="save2()" >下一步</a>
+            </div>
+        </div>
+        <div title="试卷进阶设定" style="padding:5px;">
+            <table id="paperdetailgrid" class="easyui-datagrid" style="margin:10px auto;" data-options="singleSelect:true,fitColumns:true,idField:'FDetailSetId',rownumbers:true,toolbar: [{ text: '新增', iconCls: 'icon-add', handler: function () { addqtype(); } }, { text: '删除', iconCls: 'icon-cancel', handler: function () { delqtype(); } }]">
+                <thead>
+                    <tr>
+						<th data-options="field:'FDetailSetId',align:'center',checkbox:true">选择</th>
+                        <th data-options="field:'FQuestionTypeName',width:80,align:'center'">题目类型</th>
+                        <th data-options="field:'FDifficultyName',width:80,align:'center'">难度等级</th>
+                        <th data-options="field:'FScore',width:80,align:'center'">分值</th>
+                        <th data-options="field:'FViewQuestion',width:80,align:'center'">指定题目状态</th>
+                        <th data-options="field:'FOperation',width:160,align:'center'">操作</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <div style="margin:5px auto;width:100%;text-align:center;">
+                <a href="#" class="btn1" id="A8" iconCls="icon-undo" onclick="next(1)">上一步</a>&nbsp;&nbsp;
+                <a href="#" class="btn1" id="A9" iconCls="icon-save" onclick="save3()" >下一步</a>
             </div>
         </div>
     </div>
@@ -254,14 +257,124 @@
                 </td>
             </tr>
         </table>
-        <div style="margin:5px auto;width:100%;text-align:center;">
+        <div style="margin:10px auto;width:100%;text-align:center;">
             <a href="#" class="btn1" id="A6" iconCls="icon-save" onclick="savetype()">确定</a>&nbsp;&nbsp;
             <a href="#" class="btn1" id="A7" iconCls="icon-cancel" onclick="$('#typewin').window('close');" >取消</a>
         </div>
     </div>
+    <div id="difficultywin" iconCls="icon-save" title="难度调整" style="text-align:center;display:none;">
+        <table style="width:80%;margin:20px auto;" bgcolor="#999999" border="0" cellpadding="2" cellspacing="1"> 
+            <tr>
+                <td align="right" style="width: 120px; background-color: #e1f5fc; height: 25px;" >
+                    难度设定
+                </td>
+                <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
+                    <select id="seldiff">
+                        <option value="0">低</option>
+                        <option value="1">中等</option>
+                        <option value="2">高</option>
+                    </select>
+                    <input type="hidden" id="hpaperid" value="0" />
+                    <input type="hidden" id="hdetailid" value="0" />
+                </td>
+            </tr>
+        </table>
+        <div style="margin:10px auto;width:100%;text-align:center;">
+            <a href="#" class="btn1" id="A10" iconCls="icon-save" onclick="savediff()">确定</a>&nbsp;&nbsp;
+            <a href="#" class="btn1" id="A11" iconCls="icon-cancel" onclick="$('#difficultywin').window('close');" >取消</a>
+        </div>
+    </div>
+    <div id="choosenwin" iconCls="icon-save" title="设置备选题目" style="text-align:center;display:none;">
+        <input type="hidden" id="hsetpaperid" value="" />
+        <input type="hidden" id="hsetdetailid" value="" />
+        <table id="choosenlist" class="easyui-datagrid" title="备选题目列表" style="margin:2px auto;" data-options="singleSelect:false,fitColumns:true,idField:'FQuestionId',rownumbers:true,pagination:true">
+            <thead>
+                <tr>
+					<th data-options="field:'FQuestionId',align:'center',checkbox:true">选择</th>
+                    <th data-options="field:'FQuestionDisplayTitle',width:120,align:'left'">题目标题</th>
+                    <th data-options="field:'FQuestionTypeName',width:60,align:'center'">题目类型</th>
+                    <th data-options="field:'FQuestionDifficultyName',width:60,align:'center'">题目难易等级</th>
+					<th data-options="field:'FOperation1',width:80,align:'center'">操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
     <script type="text/javascript">
+        function setchoosen(_paperid, _detailid) {
+            $("#hsetpaperid").val(_paperid);
+            $("#hsetdetailid").val(_detailid);
+            loadchoosenlist();
+            openwin("choosenwin", 400, 250, true, "loadchoosenlist");
+        }
+
+        function loadchoosenlist() {
+            var _paperid = $("#hsetpaperid").val();
+            var _detailid = $("#hsetdetailid").val();
+            var options = {
+                type: "POST",
+                data: { ppaperid: _paperid, pdetailid: _detailid },
+                success: function (res) {
+                    if (res != 'NULL') {
+                        var json = common.Util.StringToJson(res);
+                        loadgrid("choosenlist", json);
+                    }
+                    else {
+                        $("#choosenlist").datagrid('loadData', { total: 0, rows: [] });
+                    }
+                }
+            };
+            common.Ajax("GetChoosenList", options);
+        }
+
+        function savediff() {
+            var _diff = $("#seldiff").val();
+            var _paperid = $("#hpaperid").val();
+            var _detailid = $("#hdetailid").val();
+            var options = {
+                type: "POST",
+                data: { pdiff: _diff, ppaperid: _paperid, pdetailid: _detailid },
+                success: function (res) {
+                    var json = common.Util.StringToJson(res);
+                    if (json.ErrorCode == common.Consts.SuccessCode) {
+                        loaddetailset();
+                        $('#difficultywin').window('close');
+                    }
+                    else {
+                        $.messager.alert('警告', json.ErrorMessage, 'warning');
+                        return;
+                    }
+                }
+            };
+            common.Ajax("SaveDiff", options);
+        }
+
+        function adjugedifficulty(_paperid, _detailid) {
+            $("#paperdetailgrid").datagrid('selectRecord', _detailid);
+            var _difficulty = GetGridData("paperdetailgrid", "FDifficulty");
+            $("#seldiff").val(_difficulty);
+            $("#hpaperid").val(_paperid);
+            $("#hdetailid").val(_detailid);
+            openwin("difficultywin", 400, 250, true, "loaddetailset");
+        }
+
+        function setmodel() {
+            var model = $("#selexamtype").val();
+            if (model == "0") {
+                $("#selextractway").val("1");
+                $("#selchooseitemway").val("1");
+                $("#selextractway").attr("disabled", "disabled");
+                $("#selchooseitemway").attr("disabled", "disabled");
+            }
+            else {
+                $("#selextractway").val("0");
+                $("#selchooseitemway").val("0");
+                $("#selextractway").attr("disabled", false);
+                $("#selchooseitemway").attr("disabled", false);
+            }
+        }
+        
         function delqtype() {
             var rows = $('#questiontypegrid').datagrid('getSelections');
             if (!rows || rows.length == 0) {
@@ -325,8 +438,8 @@
                     $.messager.progress('close');
                     var json = common.Util.StringToJson(res);
                     if (json.ErrorCode == common.Consts.SuccessCode) {
-                        alert('保存成功!');
-                        //next(2);
+                        loaddetailset();
+                        next(2);
                     }
                     else {
                         $.messager.alert('警告', json.ErrorMessage, 'warning');
@@ -335,6 +448,24 @@
                 }
             };
             common.Ajax("SaveInfo2", options);
+        }
+
+        function loaddetailset() {
+            var _paperid = $("#hpagerid").val();
+            if (!_paperid || _paperid == '0') {
+                $.messager.alert('警告', '试卷基本信息尚未设定,无法进行题型设定', 'warning');
+                return;
+            }
+            var options = {
+                type: "POST",
+                data: { ppaperid: _paperid },
+                success: function (res) {
+                    var json = common.Util.StringToJson(res);
+                    loadgrid("paperdetailgrid", json);
+                }
+            };
+            common.Ajax("GetDetailSet", options);
+                
         }
 
         function loadquestiontypenum() {
@@ -607,7 +738,15 @@
         }
 
         function next(index) {
-            $("#tt").tabs("select", index);
+            for (var i = 0; i < 3; i++) {
+                if (i == index) {
+                    $('#tt').tabs('enableTab', index);
+                    $("#tt").tabs("select", index);
+                }
+                else {
+                    $('#tt').tabs('disableTab', i)
+                }
+            }
         }
 
         function closewin() {
@@ -693,6 +832,8 @@
             $('#txtquestionval').numberspinner({
                 editable: true
             });
+            $('#tt').tabs('disableTab', 1)
+            $('#tt').tabs('disableTab', 2)
         });
 
     </script>

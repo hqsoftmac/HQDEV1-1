@@ -22,6 +22,68 @@ namespace HQDevPlatform.OnlineExam
 
         }
 
+        public void GetChoosenList()
+        {
+            string _paperid = Parameters["ppaperid"];
+            string _detailid = Parameters["pdetailid"];
+            List<HQOnlineExam.ML.OEQuestion> lists = new List<HQOnlineExam.ML.OEQuestion>();
+            NameValueCollection where = new NameValueCollection();
+            where.Add("condition", "(FQuestionStatus = '1') and (FQuestionId in (select FQuestionId from t_oe_paperdetailquestion where FPaperId = " + _paperid + " and FDetailSetId = " + _detailid + "))");
+            OEQuestionBiz biz = new OEQuestionBiz();
+            lists = biz.Select(where);
+            if (lists.Count > 0)
+            {
+                Response.Write(Utils.ConvertToJson(lists));
+            }
+            else
+            {
+                Response.Write("NULL");
+            }
+        }
+
+        public void SaveDiff()
+        {
+            string _diff = Parameters["pdiff"];
+            string _paperid = Parameters["ppaperid"];
+            string _detailid = Parameters["pdetailid"];
+            OEPaperDetailSetBiz biz = new OEPaperDetailSetBiz();
+            ErrorEntity ErrInfo = new ErrorEntity();
+            NameValueCollection param = new NameValueCollection();
+            param.Add("FDifficulty", _diff);
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FPaperId", _paperid);
+            where.Add("FDetailSetId", _detailid);
+            biz.Update(param, where, out ErrInfo);
+            Response.Write(ErrInfo.ToJson());
+        }
+
+        public void GetDetailSet()
+        {
+            string _paperid = Parameters["ppaperid"];
+            OEPaperDetailSetBiz biz = new OEPaperDetailSetBiz();
+            List<OEPaperDetailSet> lists = new List<OEPaperDetailSet>();
+            lists = biz.Select(_paperid);
+            //获取paper关于在线模式的设定
+            OEExamPaper item = new OEExamPaper();
+            OEExamPaperBiz pbiz = new OEExamPaperBiz();
+            item = pbiz.Select(_paperid);
+            string _operation = "";
+            for (int i = 0; i < lists.Count; i++)
+            {
+                _operation = "<a href='javascript:void(0)' onclick='adjugedifficulty(" + _paperid + "," + lists[i].FDetailSetId.ToString() + ")'>调整难度等级</a>";
+                if (item.FExamType == "0")
+                {
+                    _operation += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='setquestion(" + _paperid + "," + lists[i].FDetailSetId.ToString() + ")'>指定题目</a>";
+                }
+                else
+                {
+                    _operation += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='setchoosen(" + _paperid + "," + lists[i].FDetailSetId.ToString() + ")'>设置备选题目</a>";
+                }
+                lists[i].FOperation = _operation;
+            }
+            Response.Write(Utils.ConvertToJson(lists));
+        }
+
         public void GetQTypeCount()
         {
             OEQuestionBiz biz = new OEQuestionBiz();
@@ -143,6 +205,30 @@ namespace HQDevPlatform.OnlineExam
                     tbiz.Insert(item, out ErrInfo);
                 }
             }
+
+            //delete old paperdetailset
+            OEPaperDetailSetBiz dbiz = new OEPaperDetailSetBiz();
+            dbiz.Delete(_paperid, out ErrInfo);
+            //insert new paperdetailset
+            int j = 1;
+            for (int i = 0; i < typearray.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(typearray[i]))
+                {
+                    for (int m = 1; m <= Convert.ToInt32(numarray[i]); m++)
+                    {
+                        OEPaperDetailSet item = new OEPaperDetailSet();
+                        item.FPaperId = Convert.ToInt64(_paperid);
+                        item.FDetailSetId = j;
+                        item.FQuestionType = typearray[i];
+                        item.FDifficulty = "0";
+                        item.FScore = Convert.ToDecimal(scorearray[i]);
+                        dbiz.Insert(item, out ErrInfo);
+                        j++;
+                    }
+                }
+            }
+
             Response.Write(ErrInfo.ToJson());
         }
 

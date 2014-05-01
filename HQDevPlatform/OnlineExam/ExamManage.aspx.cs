@@ -9,6 +9,7 @@ using HQOnlineExam.ML;
 using HQOnlineExam.Biz;
 using System.Collections.Specialized;
 using HQLib.Util;
+using HQLib;
 
 namespace HQDevPlatform.OnlineExam
 {
@@ -21,6 +22,15 @@ namespace HQDevPlatform.OnlineExam
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void DelData()
+        {
+            string idlist = Parameters["pparm"];
+            OEExamPaperBiz biz = new OEExamPaperBiz();
+            ErrorEntity ErrInfo = new ErrorEntity();
+            biz.Delete(idlist, out ErrInfo);
+            Response.Write(ErrInfo.ToJson());
         }
 
         public void GetContentClassTree()
@@ -62,7 +72,7 @@ namespace HQDevPlatform.OnlineExam
             OEExamPaperBiz biz = new OEExamPaperBiz();
             string _searchtext = _searchcontent;
             string _contentclassid = Parameters["pcontentclassid"];
-            string wheresql = "(FContentClassId = " + _contentclassid + ") ";
+            string wheresql = "(FContentClassId = " + _contentclassid + ") and (FPaperStatus <> '0') ";
             if (!string.IsNullOrEmpty(_searchtext))
             {
                 //difine wheresql

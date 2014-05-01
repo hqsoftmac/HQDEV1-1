@@ -68,6 +68,8 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
     <script type="text/javascript">
+        
+
         function rtn() {
 
         }
@@ -122,13 +124,13 @@
             window.parent.addtab("新增考试试卷", "OE000104001", "OEExamPaperAdd.aspx");
         }
 
-        function del() {
+        function delpaper() {
             var idlist = GetGridData("listgrid", "FPaperId");
             if (!idlist) {
-                $.messager.alert('警告', '请选择相关要删除的数据!', 'warning');
+                $.messager.alert('警告', '请选择相关要删除的试卷!', 'warning');
                 return;
             }
-            $.messager.confirm('确认', '您是否确定要删除选中的数据吗?', function (r) {
+            $.messager.confirm('确认', '您是否确定要删除选中的试卷吗?', function (r) {
                 if (!r) {
                     return;
                 }
