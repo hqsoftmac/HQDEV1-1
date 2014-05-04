@@ -17,9 +17,160 @@ namespace HQDevPlatform.OnlineExam
 {
     public partial class OEExamPaperAdd : PageBase
     {
+        public OEExamPaper gsitem;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                string _paperid = Parameters["pid"];
+                if (string.IsNullOrEmpty(_paperid))
+                {
+                    gsitem = new OEExamPaper();
+                    gsitem.FPaperTotal = 100;
+                    gsitem.FPassScore = 60;
+                    gsitem.FExamTime = 120;
+                    gsitem.FExamType = "0";
+                    gsitem.FPaperExtractWay = "0";
+                    gsitem.FChooseItemWay = "0";
+                    gsitem.FExamAgain = "0";
+                }
+                else
+                {
+                    OEExamPaperBiz biz = new OEExamPaperBiz();
+                    gsitem = biz.Select(_paperid);
+                }
+            }
+        }
 
+        public void SaveChooseQ()
+        {
+            string _idlist = Parameters["pidlist"];
+            string _paperid = Parameters["ppaperid"];
+            string _detailid = Parameters["pdetailid"];
+            OEChooseQuestionBiz biz = new OEChooseQuestionBiz();
+            OEChooseQuestion item = new OEChooseQuestion();
+            ErrorEntity ErrInfo = new ErrorEntity();
+            item.FPaperId = Convert.ToInt64(_paperid);
+            item.FDetailId = Convert.ToInt32(_detailid);
+            string[] qidarray;
+            qidarray = _idlist.Split(',');
+            for (int i = 0; i < qidarray.Length; i++)
+            {
+                if(!string.IsNullOrEmpty(qidarray[i]))
+                {
+                    item.FQuestionId = Convert.ToInt32(qidarray[i]);
+                    int result = biz.Insert(item, out ErrInfo);
+                    if (result <= 0)
+                    {
+                        Response.Write(ErrInfo.ToJson());
+                        return;
+                    }
+                }
+            }
+            Response.Write(ErrInfo.ToJson());
+        }
+
+        public void GetChoosenBank()
+        {
+            string _paperid = Parameters["ppaperid"];
+            List<OECombineBank> lists = new List<OECombineBank>();
+            OECombineBankBiz biz = new OECombineBankBiz();
+            lists = biz.Select(_paperid);
+            if (lists.Count > 0)
+            {
+                Response.Write(Utils.ConvertToJson(lists));
+            }
+            else
+            {
+                Response.Write("NULL");
+            }
+        }
+
+        public void GetQuestionList()
+        {
+            string _bank = Parameters["pbank"];
+            string _title = Parameters["ptitle"];
+            string _keyword = Parameters["pkeyword"];
+            string _chkpoint = Parameters["ppoint"];
+            string _paperid = Parameters["ppaperid"];
+            string _detailid = Parameters["pdetailid"];
+            string wheresql = "(FQuestionId not in (select FQuestionId from t_oe_choosequestion where FPaperId = " + _paperid + "))";
+            wheresql += " and (FQuestionStatus = '1')";
+            wheresql += " and (FQuestionDifficulty in (select FDifficulty from t_oe_paperdetailset where FPaperId = " + _paperid + " and FDetailSetId = " + _detailid + "))";
+            wheresql += " and (FQuestionType in (select FQuestionType from t_oe_paperdetailset where FPaperId = " + _paperid + " and FDetailSetId = " + _detailid + "))";
+            if (string.IsNullOrEmpty(_bank))
+            {
+                wheresql += " and (FQbankId in (select FQBankId from t_oe_combinebank where FPaperId = " + _paperid + "))";
+            }
+            else
+            {
+                wheresql += " and (FQBankId = " + _bank + ")";
+            }
+            if (!string.IsNullOrEmpty(_title))
+            {
+                wheresql += " and (FQuestionTitle like '%" + _title + "%')";
+            }
+            if (!string.IsNullOrEmpty(_keyword))
+            {
+                string _k = _keyword.Trim();
+                string[] k;
+                k = _k.Split(' ');
+                string _sql = "";
+                for (int i = 0; i < k.Length; i++)
+                {
+                    if (!string.IsNullOrEmpty(_sql))
+                    {
+                        _sql += " or ";
+                    }
+                    if (!string.IsNullOrEmpty(k[i].Trim()))
+                    {
+                        _sql += " ( FKeyWord like '%" + k[i].Trim() + "%') ";
+                    }
+                }
+                if (!string.IsNullOrEmpty(_sql))
+                {
+                    wheresql += " and (" + _sql + ") ";
+                }
+            }
+            if (!string.IsNullOrEmpty(_chkpoint))
+            {
+                wheresql += " and (FQuestionDesc like '%" + _chkpoint + "%')";
+            }
+            List<HQOnlineExam.ML.OEQuestion> lists = new List<HQOnlineExam.ML.OEQuestion>();
+            OEQuestionBiz biz = new OEQuestionBiz();
+            NameValueCollection where = new NameValueCollection();
+            where.Add("condition",wheresql);
+            lists = biz.Select(where);
+            if (lists.Count > 0)
+            {
+                Response.Write(Utils.ConvertToJson(lists));
+            }
+            else
+            {
+                Response.Write("NULL");
+            }
+        }
+
+        public void LoadQuestionType()
+        {
+            string _paperid = Parameters["ppaperid"];
+            List<OECombineType> lists = new List<OECombineType>();
+            OECombineTypeBiz biz = new OECombineTypeBiz();
+            lists = biz.Select(_paperid);
+            Response.Write(Utils.ConvertToJson(lists));
+        }
+
+        public void LoadQuestionBank()
+        {
+            string _paperid = Parameters["ppaperid"];
+            List<OECombineBank> lists = new List<OECombineBank>();
+            OECombineBankBiz biz = new OECombineBankBiz();
+            lists = biz.Select(_paperid);
+            for (int i = 0; i < lists.Count; i++)
+            {
+                lists[i].FOperation = "<a href='javascript:void(0)' onclick='setrate(" + lists[i].FQBankId.ToString() + ")'>设置比例</a>";
+            }
+            Response.Write(Utils.ConvertToJson(lists));
         }
 
         public void GetChoosenList()
@@ -28,7 +179,7 @@ namespace HQDevPlatform.OnlineExam
             string _detailid = Parameters["pdetailid"];
             List<HQOnlineExam.ML.OEQuestion> lists = new List<HQOnlineExam.ML.OEQuestion>();
             NameValueCollection where = new NameValueCollection();
-            where.Add("condition", "(FQuestionStatus = '1') and (FQuestionId in (select FQuestionId from t_oe_paperdetailquestion where FPaperId = " + _paperid + " and FDetailSetId = " + _detailid + "))");
+            where.Add("condition", "(FQuestionStatus = '1') and (FQuestionId in (select FQuestionId from t_oe_choosequestion where FPaperId = " + _paperid + " and FDetailId = " + _detailid + "))");
             OEQuestionBiz biz = new OEQuestionBiz();
             lists = biz.Select(where);
             if (lists.Count > 0)
@@ -46,14 +197,23 @@ namespace HQDevPlatform.OnlineExam
             string _diff = Parameters["pdiff"];
             string _paperid = Parameters["ppaperid"];
             string _detailid = Parameters["pdetailid"];
-            OEPaperDetailSetBiz biz = new OEPaperDetailSetBiz();
-            ErrorEntity ErrInfo = new ErrorEntity();
-            NameValueCollection param = new NameValueCollection();
-            param.Add("FDifficulty", _diff);
+            OEPaperDetailQuestionBiz biz = new OEPaperDetailQuestionBiz();
             NameValueCollection where = new NameValueCollection();
             where.Add("FPaperId", _paperid);
             where.Add("FDetailSetId", _detailid);
-            biz.Update(param, where, out ErrInfo);
+            ErrorEntity ErrInfo = new ErrorEntity();
+            NameValueCollection param = new NameValueCollection();
+            param.Add("FDifficulty", _diff);
+            if (biz.Select(where).Count > 0)
+            {
+                biz.Update(param,where, out ErrInfo);
+            }
+            else
+            {
+                param.Add("FPaperId", _paperid);
+                param.Add("FDetailSetId", _detailid);
+                biz.Insert(param, out ErrInfo);
+            }
             Response.Write(ErrInfo.ToJson());
         }
 
@@ -224,6 +384,20 @@ namespace HQDevPlatform.OnlineExam
                         item.FDifficulty = "0";
                         item.FScore = Convert.ToDecimal(scorearray[i]);
                         dbiz.Insert(item, out ErrInfo);
+                        //检测备选题型不符合,将删除备选题目设定
+                        List<OEChooseQuestion> choosequestion = new List<OEChooseQuestion>();
+                        OEChooseQuestionBiz cqbiz = new OEChooseQuestionBiz();
+                        NameValueCollection cqwhere = new NameValueCollection();
+                        cqwhere.Add("FPaperId", _paperid);
+                        cqwhere.Add("FDetailId", j.ToString());
+                        choosequestion = cqbiz.Select(cqwhere);
+                        if (choosequestion.Count > 0)
+                        {
+                            if (choosequestion[0].FQuestionType != item.FQuestionType)
+                            {
+                                cqbiz.Delete(cqwhere, out ErrInfo);
+                            }
+                        }
                         j++;
                     }
                 }
@@ -255,8 +429,8 @@ namespace HQDevPlatform.OnlineExam
             item.FPaperExtractWay = _extractway;
             item.FPaperId = string.IsNullOrEmpty(_paperid) ? 0 : Convert.ToInt64(_paperid);
             item.FPaperName = _pagename;
-            item.FPaperTotal = string.IsNullOrEmpty(_total) ? 0 : Convert.ToInt32(_total);
-            item.FPassScore = string.IsNullOrEmpty(_passscore) ? 0 : Convert.ToInt32(_passscore);
+            item.FPaperTotal = string.IsNullOrEmpty(_total) ? 0 : Convert.ToDecimal(_total);
+            item.FPassScore = string.IsNullOrEmpty(_passscore) ? 0 : Convert.ToDecimal(_passscore);
             item.AUserId = Convert.ToInt64(userid);
             OEExamPaperBiz biz = new OEExamPaperBiz();
             ErrorEntity ErrInfo = new ErrorEntity();
@@ -273,6 +447,10 @@ namespace HQDevPlatform.OnlineExam
             {
                 item.FPaperTime = DateTime.Today;
                 biz.Update(item, out ErrInfo);
+                if (ErrInfo.ErrorCode == RespCode.Success)
+                {
+                    ErrInfo.ErrorMessage = item.FPaperId.ToString();
+                }
             }
             Response.Write(ErrInfo.ToJson());
             

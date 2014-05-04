@@ -11,7 +11,7 @@ namespace HQOnlineExam.DA
     {
         public OEChooseQuestionDA()
         {
-            this._selecttable = "t_oe_choosequestion";
+            this._selecttable = "v_oe_choosequestiontype";
             this._inserttable = "t_oe_choosequestion";
             this._updatetable = "t_oe_choosequestion";
             this._deletetable = "t_oe_choosequestion";

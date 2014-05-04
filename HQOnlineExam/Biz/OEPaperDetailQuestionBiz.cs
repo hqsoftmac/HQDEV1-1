@@ -47,17 +47,7 @@ namespace HQOnlineExam.Biz
             return result;
         }
 
-        public Int32 Insert(OEPaperDetailQuestion item, out ErrorEntity ErrInfo)
-        {
-            //Error Judge Define
-
-            NameValueCollection parameters = new NameValueCollection();
-            parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FDetailSetId", item.FDetailSetId.ToString());
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
-            return Insert(parameters, out ErrInfo);
-        }
-
+       
         public int Update(NameValueCollection parameters, NameValueCollection where, out ErrorEntity ErrInfo)
         {
             OEPaperDetailQuestionDA da = new OEPaperDetailQuestionDA();
@@ -73,22 +63,6 @@ namespace HQOnlineExam.Biz
             return result;
 
         }
-
-        public Int32 Update(OEPaperDetailQuestion item, out ErrorEntity ErrInfo)
-        {
-            //Error Judge Define
-
-            NameValueCollection parameters = new NameValueCollection();
-            parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FDetailSetId", item.FDetailSetId.ToString());
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
-            NameValueCollection where = new NameValueCollection();
-            where.Add("FPaperId", item.FPaperId.ToString());
-            where.Add("FDetailSetId", item.FDetailSetId.ToString());
-            where.Add("FQuestionId", item.FQuestionId.ToString());
-            return Update(parameters, where, out ErrInfo);
-        }
-
 
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {

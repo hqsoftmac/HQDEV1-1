@@ -24,6 +24,32 @@ namespace HQDevPlatform.OnlineExam
 
         }
 
+        public void SetPaperPublic()
+        {
+            string _paperid = Parameters["ppaperid"];
+            OEExamPaperBiz biz = new OEExamPaperBiz();
+            NameValueCollection par = new NameValueCollection();
+            par.Add("FPaperStatus", "1");
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FPaperId", _paperid);
+            ErrorEntity ErrInfo = new ErrorEntity();
+            biz.Update(par, where, out ErrInfo);
+            Response.Write(ErrInfo.ToJson());
+        }
+
+        public void SetPaperPrivate()
+        {
+            string _paperid = Parameters["ppaperid"];
+            OEExamPaperBiz biz = new OEExamPaperBiz();
+            NameValueCollection par = new NameValueCollection();
+            par.Add("FPaperStatus", "2");
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FPaperId", _paperid);
+            ErrorEntity ErrInfo = new ErrorEntity();
+            biz.Update(par, where, out ErrInfo);
+            Response.Write(ErrInfo.ToJson());
+        }
+
         public void DelData()
         {
             string idlist = Parameters["pparm"];
@@ -72,7 +98,8 @@ namespace HQDevPlatform.OnlineExam
             OEExamPaperBiz biz = new OEExamPaperBiz();
             string _searchtext = _searchcontent;
             string _contentclassid = Parameters["pcontentclassid"];
-            string wheresql = "(FContentClassId = " + _contentclassid + ") and (FPaperStatus <> '0') ";
+            string wheresql = "(FContentClassId = " + _contentclassid + ")";
+            wheresql += " and ((FPaperStatus = '1') or ((FPaperStatus = '2') and (AUserId = " + userid + ")))";
             if (!string.IsNullOrEmpty(_searchtext))
             {
                 //difine wheresql
@@ -85,6 +112,28 @@ namespace HQDevPlatform.OnlineExam
             orderby.Add(_sortname, _sortdirection);
             Int32 totalcount = 0;
             lists = biz.Select(where, orderby, Convert.ToInt32(sPageIndex), Convert.ToInt32(sPageSize), out totalcount);
+            //设置操作动作
+            for (int i = 0; i < lists.Count; i++)
+            {
+                string _operation = "";
+                if (lists[0].AUserId == Convert.ToInt64(userid))
+                {
+                    _operation = "<a href='javascript:void(0)' onclick='editpaper(" + lists[i].FPaperId.ToString() + ")'>更改设定</a>";
+                    if (lists[i].FPaperStatus == "1")
+                    {
+                        _operation += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='setprivate(" + lists[i].FPaperId.ToString() + ")'>设为保密</a>";
+                    }
+                    else
+                    {
+                        _operation += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='setpublic(" + lists[i].FPaperId.ToString() + ")'>设为公开</a>";
+                    }
+                }
+                else
+                {
+                    _operation = "<a href='javascript:void(0)' onclick='viewpaper(" + lists[i].FPaperId.ToString() + ")'>查看设定</a>";
+                }
+                lists[i].FOperation = _operation;
+            }
             string datasource = Utils.GetRepeaterDatasource(lists, sPageIndex, sPageSize, totalcount);
             Response.Write(datasource);
         }

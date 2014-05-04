@@ -161,7 +161,6 @@ namespace HQOnlineExam.Biz
             parameters.Add("FPaperContent", item.FPaperContent);
             parameters.Add("AUserId", item.AUserId.ToString());
             parameters.Add("FPaperTime", item.FPaperTime.ToString());
-            parameters.Add("FPaperStatus", item.FPaperStatus);
             parameters.Add("FExamTime", item.FExamTime.ToString());
             parameters.Add("FExamType", item.FExamType);
             parameters.Add("FExamAgain", item.FExamAgain);

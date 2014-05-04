@@ -14,7 +14,13 @@ namespace HQOnlineExam.ML
 
       public Int64 FQBankId { get; set; }
 
+      public string FQBankCode { get; set; }
+
+      public string FQBankName { get; set; }
+
       public Decimal FQBnakRate { get; set; }
+
+      public string FOperation { get; set; }
 
       public OECombineBank()
       {

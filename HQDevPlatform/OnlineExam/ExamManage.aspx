@@ -68,7 +68,59 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
     <script type="text/javascript">
+        function editpaper(_paperid) {
+            window.parent.addtab("编辑考试试卷", "OE000104001", "OEExamPaperAdd.aspx?pid=" + _paperid );
+        }
         
+        function setprivate(_paperid) {
+            $.messager.confirm('确认', '您是否确定要将改试卷设置为保密吗?', function (r) {
+                if (!r) {
+                    return;
+                }
+                else {
+                    var options = {
+                        type: "POST",
+                        data: { ppaperid: _paperid },
+                        success: function (res) {
+                            var json = common.Util.StringToJson(res);
+                            if (json.ErrorCode == common.Consts.SuccessCode) {
+                                loadgriddata();
+                            }
+                            else {
+                                $.messager.alert('警告', json.ErrorMessage, 'warning');
+                                return;
+                            }
+                        }
+                    };
+                    common.Ajax("SetPaperPrivate", options);
+                }
+            });
+        }
+
+        function setpublic(_paperid) {
+            $.messager.confirm('确认', '您是否确定要将改试卷设置为公开吗?', function (r) {
+                if (!r) {
+                    return;
+                }
+                else {
+                    var options = {
+                        type: "POST",
+                        data: { ppaperid: _paperid },
+                        success: function (res) {
+                            var json = common.Util.StringToJson(res);
+                            if (json.ErrorCode == common.Consts.SuccessCode) {
+                                loadgriddata();
+                            }
+                            else {
+                                $.messager.alert('警告', json.ErrorMessage, 'warning');
+                                return;
+                            }
+                        }
+                    };
+                    common.Ajax("SetPaperPublic", options);
+                }
+            });
+        }
 
         function rtn() {
 

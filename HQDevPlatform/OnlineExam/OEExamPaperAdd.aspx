@@ -28,8 +28,8 @@
                         试卷名称：
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="hidden" id="hpagerid" value="0" />
-                        <input type="text" id="txtpagername" value="" style="width:400px;" />
+                        <input type="hidden" id="hpagerid" value="<%=gsitem.FPaperId %>" />
+                        <input type="text" id="txtpagername" value="<%=gsitem.FPaperName %>" style="width:400px;" />
                     </td>
                 </tr>
                 <tr>
@@ -37,8 +37,8 @@
                         所属内容类别：
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="text" id="txtFContentClassName" value="" style="width:250px;" readonly />
-                        <input type="hidden" id="hFContentClassId" value="" />
+                        <input type="text" id="txtFContentClassName" value="<%=gsitem.FDisplayContentClass %>" style="width:250px;" readonly />
+                        <input type="hidden" id="hFContentClassId" value="<%=gsitem.FContentClassId %>" />
                         <a href="javascript:void(0)" class="btn" id="A3" iconCls="icon-search" onclick="selectcontentclass()"></a>
                     </td>
                 </tr>
@@ -47,7 +47,7 @@
                         试卷总分：
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="text" id="txtpapertotal" value="100" style="width:60px;" />
+                        <input type="text" id="txtpapertotal" value="<%=gsitem.FPaperTotal %>" style="width:60px;" />
                     </td>
                 </tr>
                 <tr>
@@ -55,7 +55,7 @@
                         通过分数：
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="text" id="txtpassscore" value="60" style="width:60px;" />
+                        <input type="text" id="txtpassscore" value="<%=gsitem.FPassScore %>" style="width:60px;" />
                     </td>
                 </tr>
                 <tr>
@@ -107,7 +107,7 @@
                         考试时间：
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                        <input type="text" id="txtexamtime" value="120" style="width:60px;" />&nbsp;&nbsp;分钟
+                        <input type="text" id="txtexamtime" value="<%=gsitem.FExamTime %>" style="width:60px;" />&nbsp;&nbsp;分钟
                     </td>
                 </tr>
                 <tr>
@@ -115,13 +115,13 @@
                         试卷说明：
                     </td>
                     <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
-                       <textarea id="txtpapercontent" style="width:98%;height:130px;"></textarea> 
+                       <textarea id="txtpapercontent" style="width:98%;height:130px;"><%=gsitem.FPaperContent %></textarea> 
                     </td>
                 </tr>
             </table>
             <div style="margin:20px auto;width:100%;text-align:center;">
-                <a href="#" class="btn1" id="btnsave" iconCls="icon-save" onclick="save1()">下一步</a>&nbsp;&nbsp;
-                <a href="#" class="btn1" id="btnclose" iconCls="icon-undo" onclick="closewin()" >取消</a>
+                <a href="javascript:void(0)" class="btn1" id="btnsave" iconCls="icon-save" onclick="save1()">下一步</a>&nbsp;&nbsp;
+                <a href="javascript:void(0)" class="btn1" id="btnclose" iconCls="icon-undo" onclick="closewin()" >取消</a>
             </div>
         </div>
         <div title="试卷题型设定" style="padding:5px;">
@@ -163,12 +163,12 @@
                 </tr>
             </table>
             <div style="margin:5px auto;width:100%;text-align:center;">
-                <a href="#" class="btn1" id="A1" iconCls="icon-undo" onclick="next(0)">上一步</a>&nbsp;&nbsp;
-                <a href="#" class="btn1" id="A2" iconCls="icon-save" onclick="save2()" >下一步</a>
+                <a href="javascript:void(0)" class="btn1" id="A1" iconCls="icon-undo" onclick="next(0)">上一步</a>&nbsp;&nbsp;
+                <a href="javascript:void(0)" class="btn1" id="A2" iconCls="icon-save" onclick="save2()" >下一步</a>
             </div>
         </div>
         <div title="试卷进阶设定" style="padding:5px;">
-            <table id="paperdetailgrid" class="easyui-datagrid" style="margin:10px auto;" data-options="singleSelect:true,fitColumns:true,idField:'FDetailSetId',rownumbers:true,toolbar: [{ text: '新增', iconCls: 'icon-add', handler: function () { addqtype(); } }, { text: '删除', iconCls: 'icon-cancel', handler: function () { delqtype(); } }]">
+            <table id="paperdetailgrid" class="easyui-datagrid" style="margin:10px auto;" data-options="singleSelect:true,fitColumns:true,idField:'FDetailSetId',rownumbers:true">
                 <thead>
                     <tr>
 						<th data-options="field:'FDetailSetId',align:'center',checkbox:true">选择</th>
@@ -182,8 +182,8 @@
             </table>
 
             <div style="margin:5px auto;width:100%;text-align:center;">
-                <a href="#" class="btn1" id="A8" iconCls="icon-undo" onclick="next(1)">上一步</a>&nbsp;&nbsp;
-                <a href="#" class="btn1" id="A9" iconCls="icon-save" onclick="save3()" >下一步</a>
+                <a href="javascript:void(0)" class="btn1" id="A8" iconCls="icon-undo" onclick="next(1)">上一步</a>&nbsp;&nbsp;
+                <a href="javascript:void(0)" class="btn1" id="A9" iconCls="icon-save" onclick="save3()" >下一步</a>
             </div>
         </div>
     </div>
@@ -211,8 +211,8 @@
             </tr>
         </table>
         <div style="margin:5px auto;width:100%;text-align:center;">
-            <a href="#" class="btn1" id="A4" iconCls="icon-save" onclick="saverate()">确定</a>&nbsp;&nbsp;
-            <a href="#" class="btn1" id="A5" iconCls="icon-cancel" onclick="$('#ratewin').window('close');" >取消</a>
+            <a href="javascript:void(0)" class="btn1" id="A4" iconCls="icon-save" onclick="saverate()">确定</a>&nbsp;&nbsp;
+            <a href="javascript:void(0)" class="btn1" id="A5" iconCls="icon-cancel" onclick="$('#ratewin').window('close');" >取消</a>
         </div>
     </div>
     <div id="typewin" iconCls="icon-save" title="题型设定" style="text-align:center;display:none;">
@@ -258,8 +258,8 @@
             </tr>
         </table>
         <div style="margin:10px auto;width:100%;text-align:center;">
-            <a href="#" class="btn1" id="A6" iconCls="icon-save" onclick="savetype()">确定</a>&nbsp;&nbsp;
-            <a href="#" class="btn1" id="A7" iconCls="icon-cancel" onclick="$('#typewin').window('close');" >取消</a>
+            <a href="javascript:void(0)" class="btn1" id="A6" iconCls="icon-save" onclick="savetype()">确定</a>&nbsp;&nbsp;
+            <a href="javascript:void(0)" class="btn1" id="A7" iconCls="icon-cancel" onclick="$('#typewin').window('close');" >取消</a>
         </div>
     </div>
     <div id="difficultywin" iconCls="icon-save" title="难度调整" style="text-align:center;display:none;">
@@ -280,21 +280,74 @@
             </tr>
         </table>
         <div style="margin:10px auto;width:100%;text-align:center;">
-            <a href="#" class="btn1" id="A10" iconCls="icon-save" onclick="savediff()">确定</a>&nbsp;&nbsp;
-            <a href="#" class="btn1" id="A11" iconCls="icon-cancel" onclick="$('#difficultywin').window('close');" >取消</a>
+            <a href="javascript:void(0)" class="btn1" id="A10" iconCls="icon-save" onclick="savediff()">确定</a>&nbsp;&nbsp;
+            <a href="javascript:void(0)" class="btn1" id="A11" iconCls="icon-cancel" onclick="$('#difficultywin').window('close');" >取消</a>
         </div>
     </div>
-    <div id="choosenwin" iconCls="icon-save" title="设置备选题目" style="text-align:center;display:none;">
+    <div id="choosenwin" iconCls="icon-save" title="设置备选题目" style="text-align:center;">
         <input type="hidden" id="hsetpaperid" value="" />
         <input type="hidden" id="hsetdetailid" value="" />
-        <table id="choosenlist" class="easyui-datagrid" title="备选题目列表" style="margin:2px auto;" data-options="singleSelect:false,fitColumns:true,idField:'FQuestionId',rownumbers:true,pagination:true">
+        <table id="choosenlist" class="easyui-datagrid" style="margin:2px auto;" data-options="singleSelect:false,idField:'FQuestionId',rownumbers:true,toolbar: [{ text: '新增', iconCls: 'icon-add', handler: function () { insertquestion(); } },{ text: '删除', iconCls: 'icon-remove', handler: function () { deletequestion(); } }, { text: '取消', iconCls: 'icon-cancel', handler: function () { $('#choosenwin').window('close'); } }]">
             <thead>
                 <tr>
 					<th data-options="field:'FQuestionId',align:'center',checkbox:true">选择</th>
-                    <th data-options="field:'FQuestionDisplayTitle',width:120,align:'left'">题目标题</th>
-                    <th data-options="field:'FQuestionTypeName',width:60,align:'center'">题目类型</th>
-                    <th data-options="field:'FQuestionDifficultyName',width:60,align:'center'">题目难易等级</th>
-					<th data-options="field:'FOperation1',width:80,align:'center'">操作</th>
+                    <th data-options="field:'FQuestionDisplayTitle',width:440,align:'left'">题目标题</th>
+                    <th data-options="field:'FQuestionTypeName',width:80,align:'center'">题目类型</th>
+                    <th data-options="field:'FQuestionDifficultyName',width:80,align:'center'">题目难易等级</th>
+                    <th data-options="field:'FOperation1',width:80,align:'center'">操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="questionwin" iconCls="icon-save" title="设置备选题目" style="text-align:center;" >
+        <div style="width:100%;background-color:#f4f4f4;border:1px solid #dddddd;border-left-width:0px;border-right-width:0px;text-align:left;">
+            <a href="javascript:void(0)" class="btn" iconCls="icon-ok" onclick="chooseq1()">选择</a>
+            <a href="javascript:void(0)" class="btn" iconCls="icon-search" onclick="showfilter()">过滤</a>
+            <a href="javascript:void(0)" class="btn" iconCls="icon-cancel" onclick="$('#questionwin').window('close')">取消</a>
+        </div>
+        <table id="filtertable" style="width:100%;margin:0px auto;display:none;" bgcolor="#999999" border="0" cellpadding="2" cellspacing="1">
+            <tr>
+                <td align="right" style="width: 80px; background-color: #f4f4f4; height: 25px;" >
+                    所属题库:
+                </td>
+                <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
+                    <select id="choosebank">
+                        <option value="">所有题库</option>
+                    </select>
+                </td>
+                <td align="right" style="width: 80px; background-color: #f4f4f4; height: 25px;" >
+                    题目标题:
+                </td>
+                <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
+                    <input type="text" id="choosetitle" value= "" style="width:180px;" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" style="width: 80px; background-color: #f4f4f4; height: 25px;" >
+                    关键字:
+                </td>
+                <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
+                    <input type="text" id="choosekeyword" value= "" style="width:180px;" />
+                </td>
+                <td align="right" style="width: 80px; background-color: #f4f4f4; height: 25px;" >
+                    考察点:
+                </td>
+                <td style="background-color: #ffffff; padding-left:5px;text-align:left;" >
+                    <input type="text" id="choosepoint" value= "" style="width:180px;" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" style="background-color: #f4f4f4; height: 25px;" colspan="4" >
+                    <a href="javascript:void(0)" class="btn1" iconCls="icon-search" onclick="filterq()">过滤</a>
+                </td>
+            </tr>
+        </table>
+        <table id="questionlist" class="easyui-datagrid" style="margin:2px auto;" data-options="singleSelect:false,idField:'FQuestionId',rownumbers:true">
+            <thead>
+                <tr>
+					<th data-options="field:'FQuestionId',align:'center',checkbox:true">选择</th>
+                    <th data-options="field:'FQuestionDisplayTitle',width:500,align:'left'">题目标题</th>
+                    <th data-options="field:'FOperation1',width:80,align:'center'">操作</th>
                 </tr>
             </thead>
         </table>
@@ -302,11 +355,57 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="CPHJavascript" runat="server">
     <script type="text/javascript">
+        function chooseq1() {
+            var idlist = GetGridData("questionlist", "FQuestionId");
+            if (!idlist) {
+                $.messager.alert("警告", "请选择相关题目!", "warning");
+                return;
+            }
+            var _paperid = $("#hsetpaperid").val();
+            var _detailid = $("#hsetdetailid").val();
+            var options = {
+                type: "POST",
+                data: { pidlist: idlist, ppaperid: _paperid, pdetailid: _detailid },
+                success: function (res) {
+                    var json = common.Util.StringToJson(res);
+                    if (json.ErrorCode == common.Consts.SuccessCode) {
+                        $("#questionwin").window('close');
+                    }
+                    else {
+                        $.messager.alert("警告", json.ErrorMessage, "warning");
+                        return;
+                    }
+                }
+            };
+            common.Ajax("SaveChooseQ", options);
+
+        }
+        
         function setchoosen(_paperid, _detailid) {
             $("#hsetpaperid").val(_paperid);
             $("#hsetdetailid").val(_detailid);
             loadchoosenlist();
-            openwin("choosenwin", 400, 250, true, "loadchoosenlist");
+            //加载过滤窗口题库下拉
+            loadchoosenbank(_paperid);
+            openwin("choosenwin", 780, 500, true, "loaddetailset");
+        }
+
+        //加载过滤窗口题库下拉
+        function loadchoosenbank(_paperid) {
+             var options = {
+                type: "POST",
+                data: { ppaperid: _paperid },
+                success: function (res) {
+                    if (res != 'NULL') {
+                        var json = common.Util.StringToJson(res);
+                        $("#choosebank").empty();
+                        $("#choosebank").append("<option value=''>所有题库</option>");
+                        common.DropDownList.Load("choosebank", json, "FQBankName", "FQBankId");
+                    }
+                }
+            };
+            common.Ajax("GetChoosenBank", options);
+
         }
 
         function loadchoosenlist() {
@@ -327,6 +426,96 @@
             };
             common.Ajax("GetChoosenList", options);
         }
+        
+        function showfilter() {
+            $("#filtertable").toggle(100);
+        }
+
+        function filterq() {
+            var _selbank = $("#choosebank").val();
+            var _title = $("#choosetitle").val();
+            var _keyword = $("#choosekeyword").val();
+            var _chkpoint = $("#choosepoint").val();
+            var _paperid = $("#hsetpaperid").val();
+            var _detailid = $("#hsetdetailid").val();
+            var options = {
+                type: "POST",
+                data: {
+                    pbank: _selbank,
+                    ptitle: _title,
+                    pkeyword: _keyword,
+                    ppoint: _chkpoint,
+                    ppaperid: _paperid,
+                    pdetailid: _detailid
+                },
+                success: function (res) {
+                    if (res != 'NULL') {
+                        var json = common.Util.StringToJson(res);
+                        loadgrid("questionlist", json);
+                    }
+                    else {
+                        $("#questionlist").datagrid('loadData', { total: 0, rows: [] });
+                    }
+                }
+            };
+            
+            common.Ajax("GetQuestionList", options);
+        }
+
+        function insertquestion() {
+            
+            filterq();
+            openwin("questionwin", 700, 500, true, "loadchoosenlist");
+        }
+
+        function rnt() {
+
+        }
+
+//        function setquestion(_paperid, _detailid) {
+//            $("#hsetpaperid").val(_paperid);
+//            $("#hsetdetailid").val(_detailid);
+//            loadchoosenlist();
+//            openwin("choosenwin", 860, 450, true, "loadchoosenlist");
+//        }
+
+        function loadquestiontypegrid() {
+            var _paperid = $("#hpagerid").val();
+            var options = {
+                type: "POST",
+                data: { ppaperid: _paperid },
+                success: function (res) {
+                    if (res != 'NULL') {
+                        var json = common.Util.StringToJson(res);
+                        loadgrid("questiontypegrid", json);
+                    }
+                    else {
+                        $("#questiontypegrid").datagrid('loadData', { total: 0, rows: [] });
+                    }
+                }
+            };
+            common.Ajax("LoadQuestionType", options);
+        }
+        
+        function loadquestionbankgrid() {
+            var _paperid = $("#hpagerid").val();
+            var options = {
+                type: "POST",
+                data: { ppaperid: _paperid },
+                success: function (res) {
+                    if (res != 'NULL') {
+                        var json = common.Util.StringToJson(res);
+                        loadgrid("questionbankgrid", json);
+                    }
+                    else {
+                        $("#questionbankgrid").datagrid('loadData', { total: 0, rows: [] });
+                    }
+                }
+            };
+            common.Ajax("LoadQuestionBank", options);
+        }
+        
+        
 
         function savediff() {
             var _diff = $("#seldiff").val();
@@ -678,7 +867,7 @@
                 return;
             }
             else {
-                if (!common.Validate.ValidateNumber(_total)) {
+                if (!common.Validate.ValidateFloat(_total)) {
                     $.messager.alert("警告", "请正确输入试卷总分!", "warning");
                     return;
                 }
@@ -699,7 +888,7 @@
                 return;
             }
             else {
-                if (!common.Validate.ValidateNumber(_passscore)) {
+                if (!common.Validate.ValidateFloat(_passscore)) {
                     $.messager.alert("警告", "请正确输入通过分数!", "warning");
                     return;
                 }
@@ -725,6 +914,9 @@
                     var json = common.Util.StringToJson(res);
                     if (json.ErrorCode == common.Consts.SuccessCode) {
                         $("#hpagerid").val(json.ErrorMessage);
+                        //加载第二页
+                        loadquestionbankgrid();
+                        loadquestiontypegrid();
                         next(1);
                     }
                     else {
@@ -816,15 +1008,18 @@
         }
 
         $(function () {
+            $("#choosenwin").hide();
+            
             $('.btn').linkbutton({ plain: true });
             $('.btn1').linkbutton();
+
             for (var i = 1; i < 6; i++) {
                 $("#num" + i).numberspinner({ editable: true, onSpinUp: function () { change(this); } });
                 $("#fz" + i).numberspinner({ editable: true, onSpinUp: function () { change(this); } });
             }
             $("#qbankwin").hide();
             $('#txtrate').numberspinner({
-                editable:true
+                editable: true
             });
             $('#txtquestionnum').numberspinner({
                 editable: true
@@ -834,6 +1029,16 @@
             });
             $('#tt').tabs('disableTab', 1)
             $('#tt').tabs('disableTab', 2)
+            var _type = '<%=gsitem.FExamType %>';
+            $("#selexamtype").val(_type);
+            setmodel();
+            var _way = '<%=gsitem.FPaperExtractWay %>';
+            $("#selextractway").val(_way);
+            var _chooseitem = '<%=gsitem.FChooseItemWay %>';
+            $("#selchooseitemway").val(_chooseitem);
+            var _again = '<%=gsitem.FExamAgain %>';
+            $("#selexamagain").val(_again);
+            $("#questionwin").hide();
         });
 
     </script>

@@ -19,6 +19,21 @@ namespace HQOnlineExam.ML
 
         public string FContentClassName { get; set; }
 
+        public string FDisplayContentClass
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(FContentClassCode))
+                {
+                    return "";
+                }
+                else
+                {
+                    return "[" + FContentClassCode + "]" + FContentClassName;
+                }
+            }
+        }
+
         public String FPaperName { get; set; }
 
         public decimal FPaperTotal { get; set; }
@@ -98,8 +113,6 @@ namespace HQOnlineExam.ML
                         return "公开";
                     case "2":
                         return "保密";
-                    case "3":
-                        return "公开";
                     default:
                         return "未知";
                 }
@@ -143,15 +156,9 @@ namespace HQOnlineExam.ML
         }
 
 
-        public string FOperation
-        {
-            get
-            {
-                return "";
-            }
-        }
-
-        public OEExamPaper()
+        public string FOperation { get; set; }
+        
+            public OEExamPaper()
         {
         }
 

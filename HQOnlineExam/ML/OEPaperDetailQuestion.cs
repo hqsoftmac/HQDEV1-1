@@ -14,15 +14,15 @@ namespace HQOnlineExam.ML
         /// <summary>
         /// 试卷ID
         /// </summary>		
-        public long FPaperId { get; set; }
+        public Int64 FPaperId { get; set; }
         /// <summary>
         /// 明细设定ID
         /// </summary>		
         public int FDetailSetId { get; set; }
         /// <summary>
-        /// 题目ID
+        /// 难度标示
         /// </summary>		
-        public long FQuestionId { get; set; }
+        public string  FDifficulty { get; set; }
 
         public OEPaperDetailQuestion()
         {

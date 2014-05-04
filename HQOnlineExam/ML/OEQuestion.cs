@@ -150,6 +150,14 @@ namespace HQOnlineExam.ML
             }
         }
 
+        public string FOperation1
+        {
+            get
+            {
+                return "<a href='javascript:void(0)' onclick='window.open (\"../onlineexam/questionview.aspx?qid=" + FQuestionId.ToString() + "\", \"newwindow\", \"height=600px, width=800px, scrollbars=yes, resizable=yes\")'>查看</a>";
+            }
+        }
+
         public OEQuestion()
         {
         }

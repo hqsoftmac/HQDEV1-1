@@ -14,6 +14,13 @@ namespace HQOnlineExam.Biz
     public partial class OECombineBankBiz
     {
 
+        public List<OECombineBank> Select(string _paperid)
+        {
+            NameValueCollection where = new NameValueCollection();
+            where.Add("FPaperId", _paperid);
+            return Select(where);
+        }
+        
         public List<OECombineBank> Select(NameValueCollection where)
         {
             OECombineBankDA da = new OECombineBankDA();

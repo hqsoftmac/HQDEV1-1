@@ -35,16 +35,25 @@ namespace HQOnlineExam.Biz
         public Int32 Insert(NameValueCollection parameters, out ErrorEntity ErrInfo)
         {
             OEChooseQuestionDA da = new OEChooseQuestionDA();
-            Int32 result = da.Insert(parameters);
-            if (result > 0)
+            try
             {
-                ErrInfo = new ErrorEntity(RespCode.Success);
+                Int32 result = da.Insert(parameters);
+                if (result > 0)
+                {
+                    ErrInfo = new ErrorEntity(RespCode.Success);
+                }
+                else
+                {
+                    ErrInfo = new ErrorEntity(RespCode.SysError);
+                }
+                return result;
             }
-            else
+            catch (Exception ex)
             {
-                ErrInfo = new ErrorEntity(RespCode.SysError);
+                ErrInfo = new ErrorEntity("999999", ex.Message);
+                return -1;
             }
-            return result;
+            
         }
 
         public Int32 Insert(OEChooseQuestion item, out ErrorEntity ErrInfo)
@@ -53,7 +62,7 @@ namespace HQOnlineExam.Biz
 
             NameValueCollection parameters = new NameValueCollection();
             parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
+            parameters.Add("FDetailId", item.FDetailId.ToString());
             parameters.Add("FQuestionId", item.FQuestionId.ToString());
             return Insert(parameters, out ErrInfo);
         }
@@ -73,22 +82,6 @@ namespace HQOnlineExam.Biz
             return result;
 
         }
-
-        public Int32 Update(OEChooseQuestion item, out ErrorEntity ErrInfo)
-        {
-            //Error Judge Define
-
-            NameValueCollection parameters = new NameValueCollection();
-            parameters.Add("FPaperId", item.FPaperId.ToString());
-            parameters.Add("FQuestionType", item.FQuestionType);
-            parameters.Add("FQuestionId", item.FQuestionId.ToString());
-            NameValueCollection where = new NameValueCollection();
-            where.Add("FPaperId", item.FPaperId.ToString());
-            where.Add("FQuestionType", item.FQuestionType);
-            where.Add("FQuestionId", item.FQuestionId.ToString());
-            return Update(parameters, where, out ErrInfo);
-        }
-
 
         public int Delete(NameValueCollection where, out ErrorEntity ErrInfo)
         {

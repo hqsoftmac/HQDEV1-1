@@ -10,7 +10,7 @@ namespace HQOnlineExam.DA
     {
         public OECombineBankDA()
         {
-            this._selecttable = "t_oe_combinebank";
+            this._selecttable = "v_oe_combinebank";
             this._inserttable = "t_oe_combinebank";
             this._updatetable = "t_oe_combinebank";
             this._deletetable = "t_oe_combinebank";

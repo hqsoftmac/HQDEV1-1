@@ -12,9 +12,11 @@ namespace HQOnlineExam.ML
     {
        public Int64 FPaperId { get; set; }
 
-       public string FQuestionType { get; set; }
+       public Int32 FDetailId { get; set; }
 
        public Int64 FQuestionId { get; set; }
+
+       public string FQuestionType { get; set; }
 
        public OEChooseQuestion()
        {
